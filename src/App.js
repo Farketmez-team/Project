@@ -1,25 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Auth from "./pages/Auth/Auth"
+
+import { createUseStyles } from 'react-jss';
 
 function App() {
+  const styles = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.root}>
+      <Auth></Auth>
     </div>
-  );
+
+  )
 }
 
-export default App;
+const useStyles = createUseStyles({
+  root: {
+    width: '100vw',
+    height: '100vh',
+    backgroundColor: '#363738',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minWidth:'400px'
+  }
+})
+
+export default App

@@ -1,27 +1,56 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthForm = () => {
+
+    const navigate = useNavigate();
+
+    const [isLogin, setisLogin] = useState(false);
+
+    const [password, setpassword] = useState("");
+    const [email, setemail] = useState("");
+
+    const [error, setError] = useState("");
+
     const styles = useStyles();
+
+    const handleSubmit = async () => {
+        if (isLogin) { localStorage.setItem('user', JSON.stringify({loggedin:true})); navigate("/patients") }
+        else{
+            console.log("create",{ email, password })
+        }
+    }
+
+
+
     return (
         <form className={styles.container}>
             <div className={styles.formBody}>
                 <div className={styles.formGroup}>
                     <label className={styles.formLabel}>Email</label>
-                    <input className={styles.formInput} type="text"></input>
+                    <input className={styles.formInput} type="text" value={email} onChange={(e) => { setemail(e.target.value) }}></input>
                 </div>
                 <div className={styles.formGroup}>
                     <label className={styles.formLabel}>Password</label>
-                    <input className={styles.formInput} type="password"></input>
+                    <input className={styles.formInput} type="password" value={password} onChange={(e) => { setpassword(e.target.value) }}></input>
                 </div>
+                {(error.length > 0) ? <div className={styles.formError}>
+                    <label className={styles.formErrorLabel}>{error}</label>
+                </div> : <></>}
+                {(!isLogin) ? <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>Re-type Password</label>
+                    <input className={styles.formInput} type="password" onChange={(e) => { if (password !== e.target.value) { setError("Passwords should match") } else { setError("") } }}></input>
+                </div> : <></>}
+
                 <div className={styles.formGroup}>
-                    <button className={styles.formBtn} onClick={() => { console.log('signin') }}>
-                        <label className={styles.formBtnLabel}>Sign In</label>
+                    <button className={styles.formBtn} onClick={() => { handleSubmit() }}>
+                        <label className={styles.formBtnLabel}>{(!isLogin) ? "Create account" : "Log in"}</label>
                     </button>
                 </div>
                 <div className={styles.formGroup}>
-                    <button className={styles.formForgotBtn} onClick={() => { console.log('forgot') }}>
+                    <button className={styles.formForgotBtn} onClick={() => { console.log("Forgot password") }}>
                         <label className={styles.formBtnLabel}>Forgot Password</label>
                     </button>
                 </div>
@@ -29,8 +58,8 @@ const AuthForm = () => {
                 <div className={styles.seperator}></div>
 
                 <div className={styles.formGroup}>
-                    <button className={styles.formBtn} onClick={() => { console.log('signin') }}>
-                        <label className={styles.formBtnLabel}>Log In</label>
+                    <button className={styles.formChangeBtn} onClick={() => { setisLogin(!isLogin) }}>
+                        <label className={styles.formBtnLabel}>{(isLogin) ? "Don't have an account?\nCreate one" : "Already have an account?\nLog in"}</label>
                     </button>
                 </div>
             </div>
@@ -116,7 +145,7 @@ const useStyles = createUseStyles({
     },
     seperator: {
         borderTop: '1px solid white',
-        marginBottom:'5px'
+        marginBottom: '5px'
     }
     ,
     formForgotBtn: {
@@ -129,6 +158,28 @@ const useStyles = createUseStyles({
         "&:hover": {
             cursor: 'pointer'
         }
+    },
+    formChangeBtn: {
+        display: 'inline-block',
+        textAlign: 'center',
+        background: 'none',
+        borderRadius: '5px',
+        borderWidth: '0px',
+        marginInline: '5%',
+        "&:hover": {
+            cursor: 'pointer'
+        }
+    },
+    formErrorLabel: {
+        display: 'block',
+        color: "#FF0000",
+        fontSize: '12px',
+    },
+    formError: {
+        display: 'block',
+        width: '100%',
+        marginBottom: "-5px",
+        padding: '5px'
     },
 })
 

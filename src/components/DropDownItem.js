@@ -7,8 +7,8 @@ function DropDownItem(props) {
     const styles = useStyles();
 
   return (
-    <li className={styles.listItem}>
-        <h5 className={styles.itemLabel} onClick={props.onClick}>{props.label}</h5>
+    <li className={styles.listItem} onClick={props.onClick}>
+        <h5 className={styles.itemLabel}>{props.label}</h5>
     </li>
   )
 }

@@ -22,9 +22,11 @@ const login = async ( {username, password}  ) => {
 
 const signup = async ( {username, password,email,name}  ) => {
     try {
-        const resp = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signin`,{
+        const resp = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`,{
+            name:name,
             username: username,
             password: password,
+            email:email
         });
         console.log(resp.data);
         return true

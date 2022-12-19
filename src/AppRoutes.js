@@ -7,6 +7,7 @@ import Profile from './pages/Profile'
 import AddPatient from './pages/AddPatient'
 import { Redirect } from './pages/Redirect'
 import Treatments from './pages/Treatments'
+import Treatment from './pages/Treatment'
 
 function AppRoutes() {
     return (
@@ -20,6 +21,7 @@ function AppRoutes() {
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/treatments/:patientID" element={<Treatments/>} />
                     <Route path="/addPatient" element={<AddPatient />} />
+                    <Route path="/treatment/:treatmentID" element={<Treatment />} />
                 </Route>
             </Routes>
         </Router>

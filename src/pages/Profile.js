@@ -6,8 +6,8 @@ import userService from '../services/UserService';
 const Profile = () => {
 
     const [user, setfirst] = useState(JSON.parse(localStorage.getItem('user')))
-    const [name, setname] = useState("")
-    const [email, setemail] = useState("")
+    const [name, setname] = useState(user.name)
+    const [email, setemail] = useState(user.email)
     const styles = useStyles();
 
     const handleSubmit = async ({name,email})=>
@@ -39,13 +39,13 @@ const Profile = () => {
                 </div>
                     <div className={styles.formGroup}>
                     <label className={styles.formLabel}>Name</label>
-                    <input className={styles.formInput} type="text" value={name} placeholder={user.name} onChange={(e) => { setname(e.target.value) }}></input>
+                    <input className={styles.formInput} type="text" value={name}  onChange={(e) => { setname(e.target.value) }}></input>
                 </div>
                 
                 
                 <div className={styles.formGroup}>
                     <label className={styles.formLabel}>E-mail</label>
-                    <input className={styles.formInput} type="text" value={email} placeholder={user.email} onChange={(e) => { setemail(e.target.value) }}></input>
+                    <input className={styles.formInput} type="text" value={email}  onChange={(e) => { setemail(e.target.value) }}></input>
                 </div>
 
                 <div className={styles.seperator}></div>

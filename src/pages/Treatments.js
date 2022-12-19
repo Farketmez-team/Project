@@ -4,11 +4,14 @@ import { createUseStyles } from 'react-jss';
 import { useState } from 'react';
 import searchIcon from '../assets/search.svg';
 import {
-  useParams,useLocation
+  useParams,useLocation, useNavigate
 } from "react-router-dom";
 import sortIcon from '../assets/sort.svg';
+import homeIcon from '../assets/back-arrow.svg';
 
 function Treatments() {
+
+  const navigate = useNavigate();
 
   const [searchParam, setSearchParam] = useState("");
   let { patientID } = useParams();
@@ -53,11 +56,13 @@ function Treatments() {
         <div className={styles.background}>
           <div className={styles.header}>
             <div className={styles.itemGroup}>
+              <img src={homeIcon} className={styles.homeButton} alt='HomeIcon' onClick={() => { navigate("/patients") }} />
               <label className={styles.titleLabel}>Treatments</label>
               <input className={styles.input} type="text" value={searchParam} onChange={(e) => { setSearchParam(e.target.value) }}></input>
               <button className={styles.searchButton} onClick={() => { console.log(searchParam) }}>
                 <img src={searchIcon} className={styles.searchIcon} alt='searchIcon' />
               </button>
+              <label className={styles.titleSubLabel}> Patient: {patient.name}</label>
             </div>
             <div className={styles.itemGroup}>
               <button className={styles.addButton} onClick={() => { console.log("add") }}>
@@ -207,6 +212,12 @@ const useStyles = createUseStyles({
     fontSize: '22px',
     fontWeight: 'bold'
   },
+  titleSubLabel: {
+    marginRight: '10px',
+    color: '#FFFFFF',
+    fontSize: '18px',
+    fontWeight: 'thin'
+  },
   searchButton: {
     background: 'none',
     //backgroundColor:'#FFF',
@@ -327,6 +338,15 @@ const useStyles = createUseStyles({
       cursor: 'pointer'
     },width:'25%', textAlign:'left'
   },
+  homeButton: {
+    float: 'left',
+    width: '20px',
+    height: '20px',
+    margin: '5px 5px 5px 15px',
+    '&:hover': {
+        cursor: 'pointer',
+    }
+},
 })
 
 export default Treatments

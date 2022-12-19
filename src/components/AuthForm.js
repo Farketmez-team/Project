@@ -8,7 +8,7 @@ const AuthForm = () => {
 
     const navigate = useNavigate();
 
-    const [isLogin, setisLogin] = useState(false);
+    const [isLogin, setisLogin] = useState(true);
     const [name, setname] = useState("");
     const [username, setusername] = useState("");
     const [password, setpassword] = useState("");

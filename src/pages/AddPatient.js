@@ -51,7 +51,7 @@ const AddPatient = () => {
 
                 <div className={styles.formGroup}>
                     <button className={styles.formBtn} onClick={() => { handleSubmit() }}>
-                        <label className={styles.formBtnLabel}>Add</label>
+                        <label className={styles.formBtnLabel}>Add new patient</label>
                     </button>
                 </div>
                 <div className={styles.seperator}></div>

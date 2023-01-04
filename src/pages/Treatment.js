@@ -8,7 +8,8 @@ import {
 } from "react-router-dom";
 
 import Notes from "../components/Notes"
-
+import Botox from "../components/Botox"
+import Lifting from "../components/Lifting"
 const Treatment = () => {
 
     const styles = useStyles();
@@ -21,8 +22,12 @@ const Treatment = () => {
         <Navbar/>
         <div className={styles.container}>
             <div className={styles.background}>
+                <Lifting/>
                 <Notes/>
+                <Botox/>
+                
             </div>
+           
         </div>
     </>
     

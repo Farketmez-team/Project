@@ -45,7 +45,7 @@ function Treatments() {
   }
 
   const IMG = (imgName) => {
-    return require('http://ec2-3-88-115-62.compute-1.amazonaws.com:7677/static/media/back-arrow.f9131debe5e423ee83dbd9d599235c5d.svg')
+    return require(`${imgName}`)
   }
 
   const styles = useStyles();

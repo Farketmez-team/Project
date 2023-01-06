@@ -52,7 +52,7 @@ function Treatments() {
         <div className={styles.background}>
           <div className={styles.header}>
             <div className={styles.itemGroup}>
-              <img src={require('../../assets/back-arrow.svg')} className={styles.homeButton} alt='HomeIcon' onClick={() => { navigate("/patients") }} />
+              <img src={require('../assets/back-arrow.svg')} className={styles.homeButton} alt='HomeIcon' onClick={() => { navigate("/patients") }} />
               <label className={styles.titleLabel}>Treatments</label>
               <input className={styles.input} type="text" value={searchParam} onChange={(e) => { setSearchParam(e.target.value) }}></input>
               <button className={styles.searchButton} onClick={() => { console.log(searchParam) }}>

@@ -2,12 +2,12 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import { createUseStyles } from 'react-jss';
 import { useState } from 'react';
-import searchIcon from './assets/search.svg';
+import searchIcon from '../assets/search.svg';
 import {
   useParams,useLocation, useNavigate
 } from "react-router-dom";
-import sortIcon from './assets/sort.svg';
-import homeIcon from './assets/back-arrow.svg';
+import sortIcon from '../assets/sort.svg';
+import homeIcon from '../assets/back-arrow.svg';
 
 function Treatments() {
 
@@ -56,7 +56,7 @@ function Treatments() {
         <div className={styles.background}>
           <div className={styles.header}>
             <div className={styles.itemGroup}>
-              <img src={homeIcon} className={styles.homeButton} alt='HomeIcon' onClick={() => { navigate("/patients") }} />
+              <img src={window.location.origin + homeIcon} className={styles.homeButton} alt='HomeIcon' onClick={() => { navigate("/patients") }} />
               <label className={styles.titleLabel}>Treatments</label>
               <input className={styles.input} type="text" value={searchParam} onChange={(e) => { setSearchParam(e.target.value) }}></input>
               <button className={styles.searchButton} onClick={() => { console.log(searchParam) }}>

@@ -1,8 +1,6 @@
 import { React, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useNavigate } from 'react-router-dom';
-import homeIcon from '../assets/homeicons.svg';
-import menuIcon from '../assets/menuicon.svg'
 import DropDownItem from './DropDownItem';
 
 function Navbar() {
@@ -20,9 +18,9 @@ function Navbar() {
 
     return (
         <ul className={styles.navbar}>
-            <img src={homeIcon} className={styles.homeButton} alt='HomeIcon' onClick={() => { navigate("/patients") }} />
+            <img src={window.location.origin + '/assets/homeicons.svg'} className={styles.homeButton} alt='HomeIcon' onClick={() => { navigate("/patients") }} />
             <div className={styles.drowdownContainer}>
-                <img src={menuIcon} className={styles.menuButton} alt='MenuIcon' onClick={() => { setmenuOpen(!menuOpen) }} />
+                <img src={window.location.origin + '/assets/menuicon.svg'} className={styles.menuButton} alt='MenuIcon' onClick={() => { setmenuOpen(!menuOpen) }} />
                 {(menuOpen) ? <div className={styles.drowdownMenu}>
                     <DropDownItem label={"Profile"} onClick={() => {
                         navigate("/profile")

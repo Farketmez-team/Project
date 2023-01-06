@@ -45,7 +45,7 @@ function Treatments() {
   }
 
   const IMG = (imgName) => {
-    return require(window.location.origin.toString() + `/assets/${imgName}`)
+    return require(window.location.origin.toString() + `../assets/${imgName}`)
   }
 
   const styles = useStyles();

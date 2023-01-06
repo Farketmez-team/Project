@@ -7,7 +7,7 @@ import {
   useParams,useLocation, useNavigate
 } from "react-router-dom";
 import sortIcon from '../assets/sort.svg';
-import homeIcon from '../assets/back-arrow.svg';
+import homeIcon from '/assets/back-arrow.svg';
 
 function Treatments() {
 

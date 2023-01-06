@@ -2,12 +2,9 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import { createUseStyles } from 'react-jss';
 import { useState } from 'react';
-import searchIcon from '../assets/search.svg';
 import {
   useParams,useLocation, useNavigate
-} from "react-router-dom";
-import sortIcon from '../assets/sort.svg';
-import homeIcon from '../assets/back-arrow.svg';
+} from "react-router-dom"; 
 
 function Treatments() {
 
@@ -52,11 +49,11 @@ function Treatments() {
         <div className={styles.background}>
           <div className={styles.header}>
             <div className={styles.itemGroup}>
-              <img src={require('../assets/back-arrow.svg')} className={styles.homeButton} alt='HomeIcon' onClick={() => { navigate("/patients") }} />
+              <img src={window.location.origin + '/assets/back-arrow.svg'} className={styles.homeButton} alt='HomeIcon' onClick={() => { navigate("/patients") }} />
               <label className={styles.titleLabel}>Treatments</label>
               <input className={styles.input} type="text" value={searchParam} onChange={(e) => { setSearchParam(e.target.value) }}></input>
               <button className={styles.searchButton} onClick={() => { console.log(searchParam) }}>
-                <img src={searchIcon} className={styles.searchIcon} alt='searchIcon' />
+                <img src={window.location.origin + '/assets/search.svg'} className={styles.searchIcon} alt='searchIcon' />
               </button>
               <label className={styles.titleSubLabel}> Patient: {patient.name}</label>
             </div>
@@ -71,9 +68,9 @@ function Treatments() {
               <thead><tr className={styles.patientListItem}>
               <th className={styles.patientListColumn} onClick={() => { handleSortID() }}>
                   <label className={styles.tableLabel}>Id </label>
-                  {(sortBy === 'id') ? <img src={sortIcon} className={styles.sortIcon} alt='sortIcon' /> : <></>}
+                  {(sortBy === 'id') ? <img src={window.location.origin + '/assets/sort.svg'} className={styles.sortIcon} alt='sortIcon' /> : <></>}
                 </th>
-                <th className={styles.tableLabel2}onClick={() => { handleSortDate() }}>Date{(sortBy === 'date') ? <img src={sortIcon} className={styles.sortIcon} alt='sortIcon' /> : <></>}</th>
+                <th className={styles.tableLabel2}onClick={() => { handleSortDate() }}>Date{(sortBy === 'date') ? <img src={window.location.origin + '/assets/sort.svg'} className={styles.sortIcon} alt='sortIcon' /> : <></>}</th>
                 <th style={{width:'25%', textAlign:'left'}}>Operations</th>
               </tr></thead>
               <tbody>

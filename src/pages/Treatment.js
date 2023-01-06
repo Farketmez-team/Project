@@ -10,6 +10,7 @@ import {
 import Notes from "../components/Notes"
 import Recordings from '../components/Recordings';
 import Record from '../components/Record';
+import Details from "../components/Details";
 
 const Treatment = () => {
 
@@ -27,6 +28,7 @@ const Treatment = () => {
         <div className={styles.bottomLevelBody}>
           <div className={styles.bottombody}>
             <Recordings />
+            <Details/>
           </div>
           </div>
         </div>
@@ -43,7 +45,7 @@ const useStyles = createUseStyles({
     marginTop:'8%',
     marginLeft:'0%',
     backgroundColor: '#7FADEB',
-    borderRadius:'15px'
+    borderRadius:'15px',
    
   },
   bottombody: {
@@ -53,7 +55,7 @@ const useStyles = createUseStyles({
     marginLeft:'1.2%',
     backgroundColor: '#D9E8FC',
     display: 'flex',
-    borderRadius:'20px'
+    borderRadius:'20px',
 
   },
   container: {

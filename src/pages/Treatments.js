@@ -2,12 +2,12 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import { createUseStyles } from 'react-jss';
 import { useState } from 'react';
-import searchIcon from '../assets/search.svg';
+import searchIcon from './assets/search.svg';
 import {
   useParams,useLocation, useNavigate
 } from "react-router-dom";
-import sortIcon from '../assets/sort.svg';
-import homeIcon from '../assets/back-arrow.svg';
+import sortIcon from './assets/sort.svg';
+import homeIcon from './assets/back-arrow.svg';
 
 function Treatments() {
 

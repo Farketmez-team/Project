@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import { createUseStyles } from 'react-jss';
 import { useState } from 'react';
-import searchIcon from '../assets/search.svg';
+import searchIcon from '../../assets/search.svg';
 import {
   useParams,useLocation, useNavigate
 } from "react-router-dom";

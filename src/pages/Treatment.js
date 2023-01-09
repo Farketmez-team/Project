@@ -68,7 +68,7 @@ const Treatment = () => {
   }
 
   const onUploadVoiceNote = async () => {
-    treatmentService.uploadAudioNote({ session: 128, patient: 36, mediaUrl: mediaBlobUrl }).then((resp) => {
+    treatmentService.uploadAudioNote({ session: sessionId, patient: patientID, mediaUrl: mediaBlobUrl }).then((resp) => {
       console.log(resp)
     })
   }
@@ -194,7 +194,6 @@ const Treatment = () => {
   return (
     <>
       <Navbar />
-      {status}
       <div className={styles.container} style={{ cursor: (mouseState !== mouseStateEnum.normal) ? 'crosshair' : 'default' }}>
         <div className={styles.background}>
           <div className={styles.mainScreen}>

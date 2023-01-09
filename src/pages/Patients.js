@@ -13,11 +13,12 @@ function Patients() {
 
   const [searchParam, setSearchParam] = useState("");
   const navigate = useNavigate();
-  
+
   const [idreverse, setidreverse] = useState(false);
   const [namereverse, setnamereverse] = useState(false);
   const [genderreverse, setgenderreverse] = useState(false);
   const [agereverse, setagereverse] = useState(false);
+  const [createddatereverse, setcreateddatereverse] = useState(false);
 
   const [patientList, setpatientList] = useState([])
 
@@ -25,15 +26,15 @@ function Patients() {
 
 
   useEffect(() => {
-    PatientService.getPatients().then((data)=>{
+    PatientService.getPatients().then((data) => {
       setpatientList(data)
     })
   }, []);
 
   const handleSortDelete = (name) => {
-    PatientService.removePatient({name}).then((data)=>{
+    PatientService.removePatient({ name }).then((data) => {
       alert(data.resultMessage)
-      PatientService.getPatients().then((res)=>{
+      PatientService.getPatients().then((res) => {
         setpatientList(res)
       })
     })
@@ -49,21 +50,23 @@ function Patients() {
   }
   const handleSortName = () => {
     setsortBy('name')
-    const arr = patientList.sort((a, b) =>{
-      if(a.name>b.name)return 1
-      return -1}
+    const arr = patientList.sort((a, b) => {
+      if (a.name > b.name) return 1
+      return -1
+    }
     )
     if (namereverse) arr.reverse()
     //console.log(arr)
     setpatientList(arr);
     setnamereverse(!namereverse);
-    
+
   }
   const handleSortGender = () => {
     setsortBy('gender')
-    const array = patientList.sort((a, b) =>{
-      if(a.gender>b.gender)return 1
-      return -1}
+    const array = patientList.sort((a, b) => {
+      if (a.gender > b.gender) return 1
+      return -1
+    }
     )
     if (genderreverse) array.reverse()
     setpatientList(array);
@@ -73,10 +76,19 @@ function Patients() {
     setsortBy('age')
     const array = patientList.sort((a, b) =>
       a.age - b.age
-    ).splice(0,patientList.length)
+    ).splice(0, patientList.length)
     if (agereverse) array.reverse()
     setpatientList(array);
     setagereverse(!agereverse);
+  }
+  const handleSortCreatedDate = () => {
+    setsortBy('createdDate')
+    const array = patientList.sort((a, b) =>
+      a.createdDate - b.createdDate
+    ).splice(0, patientList.length)
+    if (createddatereverse) array.reverse()
+    setpatientList(array);
+    setcreateddatereverse(!createddatereverse);
   }
 
   const styles = useStyles();
@@ -102,26 +114,28 @@ function Patients() {
           <div className={styles.cardBody}>
             <table className={styles.patientList}>
               <thead><tr className={styles.patientListItem}>
-                <th className={styles.patientListColumn} onClick={() => { handleSortID() }}>
+                <th className={styles.patientListColumn} onClick={() => { handleSortID() }} style="display:none">
                   <label className={styles.tableLabel}>Id </label>
                   {(sortBy === 'id') ? <img src={sortIcon} className={styles.sortIcon} alt='sortIcon' /> : <></>}
                 </th>
                 <th className={styles.patientListColumn} onClick={() => { handleSortName() }}><label className={styles.tableLabel}>Name </label> {(sortBy === 'name') ? <img src={sortIcon} className={styles.sortIcon} alt='sortIcon' /> : <></>}</th>
                 <th className={styles.patientListColumn} onClick={() => { handleSortGender() }}><label className={styles.tableLabel}>Gender </label> {(sortBy === 'gender') ? <img src={sortIcon} className={styles.sortIcon} alt='sortIcon' /> : <></>}</th>
                 <th className={styles.patientListColumn} onClick={() => { handleSortAge() }}><label className={styles.tableLabel}>Age </label> {(sortBy === 'age') ? <img src={sortIcon} className={styles.sortIcon} alt='sortIcon' /> : <></>}</th>
+                <th className={styles.patientListColumn} onClick={() => { handleSortCreatedDate() }}><label className={styles.tableLabel}>Created Date </label> {(sortBy === 'createdDate') ? <img src={sortIcon} className={styles.sortIcon} alt='sortIcon' /> : <></>}</th>
               </tr></thead>
               <tbody>
                 {patientList.map((patient) => {
                   return (
 
                     <tr className={styles.patientListItem} key={patient.id}>
-                      <td><label className={styles.listItemText} >{patient.id}</label></td>
+                      <td style="display:none"><label className={styles.listItemText} >{patient.id}</label></td>
                       <td><label className={styles.listItemText} >{patient.name}</label></td>
                       <td><label className={styles.listItemText} >{patient.gender}</label></td>
                       <td><label className={styles.listItemText} >{patient.age}</label></td>
+                      <td><label className={styles.listItemText} >{patient.createdDate}</label></td>
                       <td>
                         <div className={styles.listButtonContainer}>
-                          <button className={styles.listButton} onClick={() => { navigate(`/treatments/${patient.id}`,{state:{ patient:patient}}) }}>
+                          <button className={styles.listButton} onClick={() => { navigate(`/treatments/${patient.id}`, { state: { patient: patient } }) }}>
                             <label className={styles.buttonLabel}>Treatments</label>
                           </button>
                           <button className={styles.listButton2} onClick={() => { handleSortDelete(patient.name) }}>
@@ -160,7 +174,7 @@ const useStyles = createUseStyles({
     borderRadius: "10px",
     boxShadow: '4px 4px rgba(0, 0, 0, 0.2)',
     marginTop: '50px',
-    alignItems:'center'
+    alignItems: 'center'
   },
   header: {
     width: '88%',
@@ -208,7 +222,7 @@ const useStyles = createUseStyles({
   itemGroup: {
     display: 'inline-flex',
     alignItems: 'center',
-    justifyContent:'left'
+    justifyContent: 'left'
   },
   input: {
     backgroundColor: '#D9E8FC',
@@ -254,7 +268,7 @@ const useStyles = createUseStyles({
     height: "20px",
   },
   sortIcon: {
-    paddingTop:'3px',
+    paddingTop: '3px',
     width: "20px",
     height: "20px",
     "&:hover": {
@@ -353,7 +367,7 @@ const useStyles = createUseStyles({
     },
   },
   tableLabel: {
-    userSelect:'none',
+    userSelect: 'none',
     "&:hover": {
       cursor: 'pointer'
     }

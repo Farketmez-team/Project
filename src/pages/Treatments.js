@@ -70,7 +70,7 @@ function Treatments() {
           <div className={styles.cardBody}>
             <table className={styles.patientList}>
               <thead><tr className={styles.patientListItem}>
-              <th className={styles.patientListColumn} onClick={() => { handleSortID() }}>
+              <th className={styles.patientListColumn} onClick={() => { handleSortID() }} style="display: none">
                   <label className={styles.tableLabel}>Id </label>
                   {(sortBy === 'id') ? <img src={window.location.origin + '/assets/sort.svg'} className={styles.sortIcon} alt='sortIcon' /> : <></>}
                 </th>
@@ -82,9 +82,9 @@ function Treatments() {
                   return (
 
                     <tr className={styles.patientListItem} key={patientID}>
-                      <td><label className={styles.listItemText} >{patient.id}</label></td>
-                      <td style={{width:'25%', textAlign:'left'}} ><label className={styles.listItemText} >{patient.date}</label></td>
-                      <td style={{width:'25%', textAlign:'left',overflow:'clip'}} ><label className={styles.listItemText} >{patient.treatments}</label></td>
+                      <td style="display: none"><label className={styles.listItemText} >{patient.id}</label></td>
+                      <td style={{width:'15%', textAlign:'left'}} ><label className={styles.listItemText} >{patient.date}</label></td>
+                      <td style={{width:'40%', textAlign:'left',overflow:'clip'}} ><label className={styles.listItemText} >{patient.treatments}</label></td>
                       <td>
                         <div className={styles.listButtonContainer}>
                           <button className={styles.listButton} onClick={() => { navigate(`/patient/${patientID}/treatment/${patient.id}`,{state:{ patient:patient}}) }}>

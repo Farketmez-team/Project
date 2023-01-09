@@ -58,14 +58,9 @@ const Treatment = () => {
     const { status, startRecording, stopRecording, pauseRecording, mediaBlobUrl } =
         useReactMediaRecorder({ audio: true });
 
-    const handleRemove = (name) => {
-        /*PatientService.removePatient({name}).then((data)=>{
-            alert(data.resultMessage)
-            PatientService.getPatients().then((res)=>{
-            setpatientList(res)
-            })
-        })*/
-    }
+  const handleRemove = (name) => {
+    navigate(-1)
+  }
 
     const handleSave = async () => {
         console.log(operations)
@@ -74,11 +69,11 @@ const Treatment = () => {
         })
     }
 
-    const onUploadVoiceNote = async () => {
-        treatmentService.uploadAudioNote({ session: 128, patient: 36, mediaUrl: mediaBlobUrl }).then((resp) => {
-            console.log(resp)
-        })
-    }
+  const onUploadVoiceNote = async () => {
+    treatmentService.uploadAudioNote({ session: sessionId, patient: patientID, mediaUrl: mediaBlobUrl }).then((resp) => {
+      console.log(resp)
+    })
+  }
 
     const handleCancel = async () => {
         navigate(-1)

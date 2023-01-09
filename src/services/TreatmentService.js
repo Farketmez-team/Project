@@ -6,7 +6,7 @@ const getAudioNotes = async (patientID) => {
         const config = {
             headers: { Authorization: `Bearer ${user.accessToken}` }
         };
-        const resp = await axios.get(`${process.env.REACT_APP_API_URL}/voicenote/getWithPatient/?patientId=${36}`,config);
+        const resp = await axios.get(`${process.env.REACT_APP_API_URL}/voicenote/getWithPatient/?patientId=${patientID}`,config);
         
         //console.log(resp.data)
         return resp.data;
@@ -29,6 +29,23 @@ const addTreatments = async (treatments) => {
         console.log(resp)
         return resp.data;
 
+    } catch (err) {
+        // Handle Error Here
+        console.error(err);
+        return null;
+    }
+}
+
+const getTreatments = async (sessionId,patientid) => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    try {
+        const config = {
+            headers: { Authorization: `Bearer ${user.accessToken}` }
+        };
+        const resp = await axios.get(`${process.env.REACT_APP_API_URL}/treatment/listWithSession?sessionId=${sessionId}`,config);//todo patientid
+        console.log("data",resp.data)
+        //console.log(resp)
+        return resp.data
     } catch (err) {
         // Handle Error Here
         console.error(err);
@@ -70,5 +87,5 @@ const getBase64FromUrl = async (url) => {
     });
   };
 
-const treatmentService ={getAudioNotes,uploadAudioNote,addTreatments}
+const treatmentService ={getAudioNotes,uploadAudioNote,addTreatments,getTreatments}
 export default treatmentService;

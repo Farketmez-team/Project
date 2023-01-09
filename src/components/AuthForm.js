@@ -23,8 +23,9 @@ const AuthForm = () => {
             let isLoggedin = await AuthService.login({username:username, password:password})
             if(isLoggedin){
                 console.log(isLoggedin)
-                navigate("/patients")
+                
             }
+            navigate("/patients")
             setpassword("");
             setError("Wrong Email-Password Combination");
         }

@@ -24,6 +24,7 @@ function Treatments() {
   
 
   const handleSortID = () => {
+    console.log(patient)
     setsortBy('id')
     const arr = data.sort((a, b) =>
       a.id - b.id
@@ -81,12 +82,12 @@ function Treatments() {
                   return (
 
                     <tr className={styles.patientListItem} key={patientID}>
-                      <td><label className={styles.listItemText} >{patientID}</label></td>
+                      <td><label className={styles.listItemText} >{patient.id}</label></td>
                       <td style={{width:'25%', textAlign:'left'}} ><label className={styles.listItemText} >{patient.date}</label></td>
                       <td style={{width:'25%', textAlign:'left',overflow:'clip'}} ><label className={styles.listItemText} >{patient.treatments}</label></td>
                       <td>
                         <div className={styles.listButtonContainer}>
-                          <button className={styles.listButton} onClick={() => { navigate(`patient/${patientID}/treatment/${patient.id}`,{state:{ patient:patient}}) }}>
+                          <button className={styles.listButton} onClick={() => { navigate(`/patient/${patientID}/treatment/${patient.id}`,{state:{ patient:patient}}) }}>
                             <label className={styles.buttonLabel}>Details</label>
                           </button>
                           <button className={styles.listButton2} onClick={() => { console.log(patient) }}>

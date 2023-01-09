@@ -24,10 +24,12 @@ const mouseStateEnum = {
     FACELIFT : 5
 }
 
+const symbols = ['+',"■","○","▲"]
+
 const names = ['DISPORT',
   'BOTOX',
   'XEZAMIN',
-  'FACELIFT'];
+  'FACELIFT',"NONE"];
 
 class OperationDTO {
   positionX
@@ -40,7 +42,7 @@ class OperationDTO {
 const Treatment = () => {
 
   
-  
+  const navigate = useNavigate();
 
   const [points, setpoints] = useState([])
   const [mouseState, setMouseState] = useState(mouseStateEnum.normal)
@@ -51,6 +53,7 @@ const Treatment = () => {
   const [operations,setOperations]=useState([]);
   const [recorded, setrecorded] = useState(true)
   const [sessionId, setSessionId] = useState(null)
+  const [midwayy, setmidwayy] = useState(null)
 
   const { status, startRecording, stopRecording,pauseRecording, mediaBlobUrl } =
     useReactMediaRecorder({ audio: true });
@@ -78,7 +81,7 @@ const onUploadVoiceNote = async () => {
 }
 
 const handleCancel = async () => {
-   // navigate("/treatment")
+  navigate(-1)
 }
 
 
@@ -94,18 +97,19 @@ const handleClickOnFace = (e) => {
     const offsetX = e.nativeEvent.offsetX
     const offsetY = e.nativeEvent.offsetY
     console.log(offsetX+x)
+    setmidwayy(midway);
     if(offsetX+x < midway)
       if(offsetX+x<354){
-        setpoints([...points,{x:Math.round(offsetX+x+(95+((midway-(offsetX+x))*0.30))),y:offsetY+y-5,operation:mouseState},{x:offsetX+x,y:offsetY+y,operation:mouseState}])
+        setpoints([...points,{x:Math.round(offsetX+x+(95+((midway-(offsetX+x))*0.30))),y:offsetY+y-5,operation:mouseState, lvl:treatmentLvl},{x:offsetX+x,y:offsetY+y,operation:mouseState, lvl:treatmentLvl}])
       }
       else
-      setpoints([...points,{x:Math.round(offsetX+x-(145+((midway-(offsetX+x))*0.20))),y:offsetY+y+5,operation:mouseState},{x:offsetX+x,y:offsetY+y,operation:mouseState}])
+      setpoints([...points,{x:Math.round(offsetX+x-(145+((midway-(offsetX+x))*0.20))),y:offsetY+y+5,operation:mouseState, lvl:treatmentLvl},{x:offsetX+x,y:offsetY+y,operation:mouseState, lvl:treatmentLvl}])
     else{
       if(offsetX+x>640){
-        setpoints([...points,{x:Math.round(offsetX+x-(95+(((offsetX+x)-midway)*0.30))),y:offsetY+y-5,operation:mouseState},{x:offsetX+x,y:offsetY+y,operation:mouseState}])
+        setpoints([...points,{x:Math.round(offsetX+x-(95+(((offsetX+x)-midway)*0.30))),y:offsetY+y-5,operation:mouseState, lvl:treatmentLvl},{x:offsetX+x,y:offsetY+y,operation:mouseState, lvl:treatmentLvl}])
       }
       else
-      setpoints([...points,{x:Math.round(offsetX+x+(150+(((offsetX+x)-midway)*0.18))),y:offsetY+y+5,operation:mouseState},{x:offsetX+x,y:offsetY+y,operation:mouseState}])
+      setpoints([...points,{x:Math.round(offsetX+x+(150+(((offsetX+x)-midway)*0.18))),y:offsetY+y+5,operation:mouseState, lvl:treatmentLvl},{x:offsetX+x,y:offsetY+y,operation:mouseState, lvl:treatmentLvl}])
     }
     const op = new OperationDTO();
     op.patientId = patientID
@@ -116,6 +120,7 @@ const handleClickOnFace = (e) => {
     setOperations([...operations,op])
 }
 const onOperationClick = (level,operation) => {
+  console.log(`Trestment level:${level}, Operation:${names[operation-1]}`)
   setMouseState(operation)
   setTreatmentLvl(level)
 }
@@ -132,11 +137,15 @@ const onVoiceNoteSelect = (voiceNote) => {
 }
 
 useEffect(() => {
-  const op = new OperationDTO();
+  const element = myRef.current;
+    const x = element.getBoundingClientRect().left;
+    const y = element.getBoundingClientRect().top;
+    const midway =  Math.round((element.getBoundingClientRect().right + element.getBoundingClientRect().left)/2)
+  if(treatmentID==999){const op = new OperationDTO();
   op.patientId = patientID
   op.positionX = 0
   op.positionY = 0
-  op.type = names[0];
+  op.type = "NONE";
   op.treatmentSize = 10;
   treatmentService.addTreatments([op]).then((response)=>{
     setSessionId(response[0].sessionId)
@@ -144,7 +153,36 @@ useEffect(() => {
       //console.log(data)
       setrecords(data)
     })
-  })
+  })}
+  else{
+    console.log(treatmentID,sessionId)
+    setSessionId(treatmentID)
+    treatmentService.getAudioNotes(patientID).then((data)=>{
+      //console.log(data)
+      setrecords(data)
+    })
+    treatmentService.getTreatments(treatmentID,patientID).then((data)=>{
+      data.map((treatment)=>{
+        let temp = points
+        temp.push({x:treatment.positionX,y:treatment.positionY,operation: names.indexOf(treatment.type)+2,lvl:treatment.treatmentSize})
+        console.log(treatment)
+        setpoints(temp)
+    //     if(treatment.positionX < midway){
+    //   if(treatment.positionX<354){
+    //     setpoints([...points,{x:Math.round(treatment.positionX+(95+((midway-(treatment.positionX))*0.30))),y:treatment.positionY-5+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize},{x:treatment.positionX,y:treatment.positionY+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize}])
+    //   }
+    //   else
+    //   setpoints([...points,{x:Math.round(treatment.positionX-(145+((midway-(treatment.positionX))*0.20))),y:treatment.positionY+5+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize},{x:treatment.positionX,y:treatment.positionY+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize}])
+    // }else{
+    //   if(treatment.positionX>640){
+    //     setpoints([...points,{x:Math.round(treatment.positionX-(95+(((treatment.positionX)-midway)*0.30))),y:treatment.positionY-5+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize},{x:treatment.positionX,y:treatment.positionY+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize}])
+    //   }
+    //   else
+    //   setpoints([...points,{x:Math.round(treatment.positionX+(150+(((treatment.positionX)-midway)*0.18))),y:treatment.positionY+5+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize},{x:treatment.positionX,y:treatment.positionY+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize}])
+    // }
+      })
+    })
+  }
   
 
   
@@ -163,13 +201,13 @@ useEffect(() => {
       <div className={styles.container} style={{cursor:(mouseState!==mouseStateEnum.normal)?'crosshair':'default'}}>
         <div className={styles.background}>
           <div className={styles.mainScreen}>
-            <Operation onClick={onOperationClick}></Operation>
+            <Operation onClick={onOperationClick} lifting={true}></Operation>
             {points.map((point)=>{
-              return <div className={styles.points} style={{top:point.y,left:point.x}}></div>
+              return <label style={{top:point.y,left:point.x, position:'absolute',color:'#d44',fontWeight:'bold'}}>{symbols[point.operation-2]}<sub style={{color:'#d44'}}>{point.lvl}</sub></label>
             })}
             <img ref={myRef} className={styles.faces} src={faces} onClick={handleClickOnFace}></img>
             <div style={{display:'flex',flexDirection:'column', justifyContent:'center',alignItems:'center'}}>
-              <Operation onClick={onOperationClick}></Operation>
+              <Operation onClick={onOperationClick} lifting={false}></Operation>
               {(mouseState!==mouseStateEnum.normal)?<button className={styles.formBtnnn} onClick={onOperationCancel}><label>Cancel</label></button>:<></>}
             </div>
           </div>

@@ -12,7 +12,7 @@ function Navbar() {
     const [menuOpen, setmenuOpen] = useState(false);
 
     const handleLogout = () => {
-        localStorage.setItem('user', JSON.stringify({ loggedin: false })); navigate("/auth")
+        localStorage.removeItem('user'); navigate("/auth")
     }
 
 

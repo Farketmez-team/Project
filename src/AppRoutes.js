@@ -21,7 +21,7 @@ function AppRoutes() {
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/treatments/:patientID" element={<Treatments/>} />
                     <Route path="/addPatient" element={<AddPatient />} />
-                    <Route path="/treatment/:treatmentID" element={<Treatment />} />
+                    <Route path="patient/:patientID/treatment/:treatmentID" element={<Treatment />} />
                 </Route>
             </Routes>
         </Router>

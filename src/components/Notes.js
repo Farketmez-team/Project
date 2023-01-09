@@ -1,6 +1,6 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss';
-const Notes = () => {
+const Notes = (props) => {
 
     const styles = useStyles();
 
@@ -79,7 +79,7 @@ const Notes = () => {
                     <ul>
                         {noteArray.map((note) => {
                             return <li className={styles.listItem} key={note.id}>
-                                <label className={styles.ListItemLabel} onClick={()=>{console.log(note.Text)}}>{note.Title}</label>
+                                <label className={styles.ListItemLabel} onClick={()=>{props.onClick(note.Text);console.log(note.Text)}}>{note.Title}</label>
                                 </li>
                         })}
                     </ul>

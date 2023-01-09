@@ -6,57 +6,31 @@ import pause from '../assets/pause.svg'
 import play from '../assets/play.svg'
 import record from '../assets/record.svg'
 import microphone from '../assets/microphone.svg'
+import upload from '../assets/upload.svg'
 
 
-const Record = () => {
+const Record = (props) => {
 
     const styles = useStyles();
-
-    const navigate = useNavigate();
-
-    const handleRemove = (name) => {
-        /*PatientService.removePatient({name}).then((data)=>{
-            alert(data.resultMessage)
-            PatientService.getPatients().then((res)=>{
-            setpatientList(res)
-            })
-        })*/
-    }
-
-    const handleSave = async () => {
-       /* let added = await patientService.addPatient({name,
-            age,
-            gender})
-        if (added) {
-            console.log(added)
-            navigate("/treatment")
-        }
-        else alert('Couldnt add patient')*/
-    }
-
-    const handleCancel = async () => {
-       // navigate("/treatment")
-    }
-
     return (
         <div className={styles.container}>
             
             <div className={styles.formBody}>
-
-                <img src={microphone} className={styles.micbutton} alt='microphone' onClick={() => console.log("mic")}>
+            
+                <img src={microphone} className={styles.micbutton} alt='microphone' onClick={() => props.startRecording()}>
                 </img>
-                <img src={record} className={styles.recordbutton} alt='record' onClick={() => console.log("record")}>
+                <img src={record} className={styles.recordbutton} alt='record' onClick={() => {props.stopRecording(); props.setRecorded(true)}}>
                 </img>
-                <img src={pause} className={styles.pausebutton} alt='pause' onClick={() => console.log("pause")}>
+                <img src={pause} className={styles.pausebutton} alt='pause' onClick={() => props.pauseRecording()}>
                 </img>
-                <img src={play} className={styles.playbutton} alt='play' onClick={() => console.log("play")}>
-                </img>
-                <div className={styles.recBody}>
-
-                </div>
+                <img src={upload} className={styles.pausebutton} alt='upload' onClick={() => props.onUpload()}>
+                </img></div>
+                <div className={styles.player}>{(props.recorded)?<video src={props.media} controls height={50} width={400} type="audio/wav"/>:
+                <video src={props.media2} controls loop height={50} width={400} type="audio/wav"/>}
+                
             </div>
 
-            <div className={styles.formBody2}>
+            {/* <div className={styles.formBody2}>
                 <div className={styles.formGroup}>
                     <button className={styles.formBtn} onClick={() => { handleRemove() }}>
                         <label className={styles.formBtnLabel}>Remove</label>
@@ -72,7 +46,7 @@ const Record = () => {
                         <label className={styles.formBtnLabel3}>Cancel</label>
                     </button>
                 </div>
-            </div>
+            </div> */}
 
         </div>
 
@@ -80,23 +54,23 @@ const Record = () => {
 }
 const useStyles = createUseStyles({
     container: {
-        width: 2000,
+        width: '100%',
         height: '100%', 
         position: 'relative',
         display: 'flex',
         marginBottom: '15px',
     },
     formBody: {
-        width: '49%',
-        marginTop: '1%',
-        marginLeft: '1%',
+        width: '100%',
+        marginTop: '5px',
+        marginLeft: '15px',
         display: 'flex',
-        flexDirection: 'column',
-        height: "1.4%",
+        flexDirection: 'row',
+        height: "20px",
     },
     playbutton: {
-        width: '2.4%',
-        margin: '-1.9% 13.3%',
+        margin:'5px',
+        height:'25px',
         "&:hover": {
             cursor: 'pointer',
 
@@ -104,9 +78,14 @@ const useStyles = createUseStyles({
         display: 'flex',
         flexDirection: 'column',
     },
+    player:{
+        position:'relative',
+        display:'flex',
+        marginLeft:"10px",
+    },
     pausebutton: {
-        width: '2.7%',
-        margin: '-0.7% 9.2%',
+        margin:'6px',
+        height:'25px',
         "&:hover": {
             cursor: 'pointer',
 
@@ -114,8 +93,8 @@ const useStyles = createUseStyles({
 
     },
     recordbutton: {
-        width: '3%',
-        margin: '-2.1%  5%',
+        margin:'5px',
+        height:'25px',
         "&:hover": {
             cursor: 'pointer',
 
@@ -123,8 +102,8 @@ const useStyles = createUseStyles({
 
     },
     micbutton: {
-        width: '3%',
-        margin: '-1% 1%',
+        height:'25px',
+        margin:'5px',
         "&:hover": {
             cursor: 'pointer',
 

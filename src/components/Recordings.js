@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react';
+import { useState, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import pause from '../assets/pause.svg'
 import play from '../assets/play.svg'
@@ -7,11 +8,16 @@ import microphone from '../assets/record.svg'
 import Record from '../components/Record';
 
 
-const Recordings = () => {
+const Recordings = (props) => {
 
     const styles = useStyles();
+    const [records, setrecords] = useState(props.records)
 
 
+    useEffect(() => {
+        setrecords(props.records)
+    
+    }, [props.records])
     const recordArray = [
         {
             id: 0,
@@ -58,16 +64,13 @@ const Recordings = () => {
                     </div>
                     <div className={styles.recordBody}>
                         <ul>
-                            {recordArray.map((record) => {
+                            {(records)?records.map((record) => {
                                 return <li className={styles.listItem} key={record.id}>
-                                    <label className={styles.ListItemLabel}
-                                        onClick={() => { console.log(record.Text) }}
-                                    >  {record.Title}
+                                    <label className={styles.ListItemLabel} onClick={()=>{props.onClick(record.path)}}
+                                    >  Note {record.id}
                                     </label>
-                                    <img src={pause} className={styles.play_pause_Button} alt='play' onClick={() => { //display play button onclick
-                                    }}></img>
                                 </li>
-                            })}
+                            }):<></>}
 
                         </ul>
 
@@ -76,7 +79,7 @@ const Recordings = () => {
 
                 </div>
                
-            <Record/>
+            {/* <Record/> */}
             </div>
 
         </>
@@ -95,7 +98,7 @@ const useStyles = createUseStyles({
         width: '52%',
         top: '2%',
         left: '1%',
-        height:'95%',
+        height:'100px',
         display: 'flex',flexDirection: 'column',
         position: 'relative',
         //backgroundColor: '#FF0000',
@@ -118,7 +121,7 @@ const useStyles = createUseStyles({
 
     },
     header: {
-        height: "40px"
+        height: "30px"
     },
     recordBody: {
         overflowX: 'hidden',
@@ -133,7 +136,7 @@ const useStyles = createUseStyles({
         "&::-webkit-scrollbar-thumb": {
             backgroundColor: '#6A6A6A',
             backgroundClip: 'padding-box',
-            border: '7px solid rgba(0, 0, 0, 0)',
+            border: '3px solid rgba(0, 0, 0, 0)',
             borderRadius: '20000px'
         }
     },

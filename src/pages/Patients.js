@@ -122,7 +122,7 @@ function Patients() {
                       <td>
                         <div className={styles.listButtonContainer}>
                           <button className={styles.listButton} onClick={() => { navigate(`/treatments/${patient.id}`,{state:{ patient:patient}}) }}>
-                            <label className={styles.buttonLabel}>Details</label>
+                            <label className={styles.buttonLabel}>Treatments</label>
                           </button>
                           <button className={styles.listButton2} onClick={() => { handleSortDelete(patient.name) }}>
                             <label className={styles.buttonLabel2}>Remove</label>

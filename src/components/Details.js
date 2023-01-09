@@ -1,17 +1,26 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import {
+    useParams,useLocation, useNavigate
+  } from "react-router-dom";
+
+const Details = (props) => {
 
 
-const Details = () => {
+    const [detail, setDetail] = useState(props.initaltext);
 
-    const [detail, setDetail] = useState("");
+    useEffect(() => {
+        setDetail(props.initaltext)
+    
+    }, [props.initaltext])
+    
 
     const styles = useStyles();
     return (
         <div className={styles.container}>
             <div className={styles.formBody}>
-            <textarea className={styles.editBody} type="text" id="editTextID" placeholder= "Detailed info about the treatment (A written note, this field is editable text)" value={detail} onChange={(e) => { setDetail(e.target.value) }}></textarea>
+            <textarea className={styles.editBody} type="text" id="editTextID" placeholder= "Details" value={detail} onChange={(e) => { setDetail(e.target.value) }}></textarea>
 
             </div>
         </div>
@@ -28,6 +37,7 @@ const useStyles = createUseStyles({
     },
     formBody: {
         width: '100%',
+        height: '110px',
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
@@ -36,7 +46,6 @@ const useStyles = createUseStyles({
         zIndex: 2,
         borderRadius: '5px',
         boxShadow: '4px 4px rgba(0, 0, 0, 0.2)',
-        height: "240px"
         
     },
     editBody: {

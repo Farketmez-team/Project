@@ -2,9 +2,12 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import { createUseStyles } from 'react-jss';
 import { useState } from 'react';
+import searchIcon from '../assets/search.svg';
 import {
   useParams,useLocation, useNavigate
-} from "react-router-dom"; 
+} from "react-router-dom";
+import sortIcon from '../assets/sort.svg';
+import homeIcon from '../assets/back-arrow.svg';
 
 function Treatments() {
 
@@ -58,7 +61,7 @@ function Treatments() {
               <label className={styles.titleSubLabel}> Patient: {patient.name}</label>
             </div>
             <div className={styles.itemGroup}>
-              <button className={styles.addButton} onClick={() => { console.log("add") }}>
+              <button className={styles.addButton} onClick={() => { navigate(`/patient/${patient.id}/treatment/${999}`,{state:{ patient:patient}})}}>
                 <label className={styles.buttonLabel}>Add new treatment</label>
               </button>
             </div>
@@ -83,7 +86,7 @@ function Treatments() {
                       <td style={{width:'25%', textAlign:'left',overflow:'clip'}} ><label className={styles.listItemText} >{patient.treatments}</label></td>
                       <td>
                         <div className={styles.listButtonContainer}>
-                          <button className={styles.listButton} onClick={() => { console.log(patient) }}>
+                          <button className={styles.listButton} onClick={() => { navigate(`patient/${patientID}/treatment/${patient.id}`,{state:{ patient:patient}}) }}>
                             <label className={styles.buttonLabel}>Details</label>
                           </button>
                           <button className={styles.listButton2} onClick={() => { console.log(patient) }}>

@@ -57,12 +57,7 @@ const Treatment = () => {
     useReactMediaRecorder({ audio: true });
 
   const handleRemove = (name) => {
-    /*PatientService.removePatient({name}).then((data)=>{
-        alert(data.resultMessage)
-        PatientService.getPatients().then((res)=>{
-        setpatientList(res)
-        })
-    })*/
+    navigate(-1)
   }
 
   const handleSave = async () => {
@@ -199,6 +194,7 @@ const Treatment = () => {
   return (
     <>
       <Navbar />
+      {status}
       <div className={styles.container} style={{ cursor: (mouseState !== mouseStateEnum.normal) ? 'crosshair' : 'default' }}>
         <div className={styles.background}>
           <div className={styles.mainScreen}>

@@ -2635,7 +2635,7 @@ at-least-node@^1.0.0:
 
 automation-events@^4.0.25:
   version "4.0.25"
-  resolved "https://registry.npmjs.org/automation-events/-/automation-events-4.0.25.tgz"
+  resolved "https://registry.yarnpkg.com/automation-events/-/automation-events-4.0.25.tgz#f38399a3069eb1b53adf2bba247e1da9e3a1de46"
   integrity sha512-er1qdVevDNfZIQt18B31GyVX/D98tI0ztZ3z/VU6PBT0hTF8Emodl8e452k2VYdoiSTvDk0xaah7MC7AfoaZfA==
   dependencies:
     "@babel/runtime" "^7.20.6"
@@ -2905,7 +2905,7 @@ braces@^3.0.2, braces@~3.0.2:
 
 broker-factory@^3.0.72:
   version "3.0.72"
-  resolved "https://registry.npmjs.org/broker-factory/-/broker-factory-3.0.72.tgz"
+  resolved "https://registry.yarnpkg.com/broker-factory/-/broker-factory-3.0.72.tgz#7c1a838b0041cafc81d0f54592df56b0cc1fb87b"
   integrity sha512-HKfvpDigt19ZesuJfmC2Nlo1pV1+bGynPvF5lwPRaOl6+itfrxZx6ElsF64at2ErkiF6Ym4Oc8Xd6G6Ko0S4oQ==
   dependencies:
     "@babel/runtime" "^7.20.6"
@@ -3189,7 +3189,7 @@ commondir@^1.0.1:
 
 compilerr@^9.0.25:
   version "9.0.25"
-  resolved "https://registry.npmjs.org/compilerr/-/compilerr-9.0.25.tgz"
+  resolved "https://registry.yarnpkg.com/compilerr/-/compilerr-9.0.25.tgz#e47f40937b10cc31c379893214efbc20db47bbdf"
   integrity sha512-gtKUxVDgt7LCthVvYU3XSZ5sN5u/7PNwEjmZgT6Tu+9w2tzVPZ6Y5k8BaV+IaNU9ZTs7WAF61YDExs4178P9EQ==
   dependencies:
     "@babel/runtime" "^7.20.6"
@@ -3536,7 +3536,7 @@ damerau-levenshtein@^1.0.8:
 
 dashify@^2.0.0:
   version "2.0.0"
-  resolved "https://registry.npmjs.org/dashify/-/dashify-2.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/dashify/-/dashify-2.0.0.tgz#fff270ca2868ca427fee571de35691d6e437a648"
   integrity sha512-hpA5C/YrPjucXypHPPc0oJ1l9Hf6wWbiOL7Ik42cxnsUOhWiCB/fylKbKqqJalW9FgkNQCw16YO8uW9Hs0Iy1A==
 
 data-urls@^2.0.0:
@@ -4361,7 +4361,7 @@ express@^4.17.3:
 
 extendable-media-recorder-wav-encoder-broker@^7.0.74:
   version "7.0.74"
-  resolved "https://registry.npmjs.org/extendable-media-recorder-wav-encoder-broker/-/extendable-media-recorder-wav-encoder-broker-7.0.74.tgz"
+  resolved "https://registry.yarnpkg.com/extendable-media-recorder-wav-encoder-broker/-/extendable-media-recorder-wav-encoder-broker-7.0.74.tgz#96205fc17cf2459e40237f2a99b79d136d908ae4"
   integrity sha512-iZ3v8redR+Z9NLqbCsvhYU3pEif2B4E4GT3esvbuZ9RA7/kwjiltgq6XpIH/fG8mzC/9yzZ0rXCLTlrVJeARkA==
   dependencies:
     "@babel/runtime" "^7.20.6"
@@ -4371,7 +4371,7 @@ extendable-media-recorder-wav-encoder-broker@^7.0.74:
 
 extendable-media-recorder-wav-encoder-worker@^8.0.73:
   version "8.0.73"
-  resolved "https://registry.npmjs.org/extendable-media-recorder-wav-encoder-worker/-/extendable-media-recorder-wav-encoder-worker-8.0.73.tgz"
+  resolved "https://registry.yarnpkg.com/extendable-media-recorder-wav-encoder-worker/-/extendable-media-recorder-wav-encoder-worker-8.0.73.tgz#77c0976ca5ea78aa6358599a6715d5e132cfa2f2"
   integrity sha512-8M7JB4ttHFCqUsf6l6kEl01BoI8v8mCjCOTLmHudQ2HLdL3EEFGaCptN357NDkgQbdEMPooN8KRIUelPYEkMiA==
   dependencies:
     "@babel/runtime" "^7.20.6"
@@ -4380,7 +4380,7 @@ extendable-media-recorder-wav-encoder-worker@^8.0.73:
 
 extendable-media-recorder-wav-encoder@^7.0.68:
   version "7.0.80"
-  resolved "https://registry.npmjs.org/extendable-media-recorder-wav-encoder/-/extendable-media-recorder-wav-encoder-7.0.80.tgz"
+  resolved "https://registry.yarnpkg.com/extendable-media-recorder-wav-encoder/-/extendable-media-recorder-wav-encoder-7.0.80.tgz#24d2e89a6db74fdbbb265a113c78cf2e8dcf3164"
   integrity sha512-n1NYtDZpAkkYSgrV/g3EQQkTNjaUnbyo8wsEHDAS6132USxuv12QBITF0B3P+Nx+aaqOzZynCA3cAlUBIvE99g==
   dependencies:
     "@babel/runtime" "^7.20.6"
@@ -4390,7 +4390,7 @@ extendable-media-recorder-wav-encoder@^7.0.68:
 
 extendable-media-recorder@^6.6.5:
   version "6.6.10"
-  resolved "https://registry.npmjs.org/extendable-media-recorder/-/extendable-media-recorder-6.6.10.tgz"
+  resolved "https://registry.yarnpkg.com/extendable-media-recorder/-/extendable-media-recorder-6.6.10.tgz#44f3ac8f15441e8499ea9f311761dbbbc1561161"
   integrity sha512-gnSmLqDFq40ZdbGfuarnMLNqYPLCPpPr0p21V+g67wG4Pv2oCc/ga8sfsZrEM5GywEi7FcpyRm3z99JWZ/0aPw==
   dependencies:
     "@babel/runtime" "^7.18.9"
@@ -4429,7 +4429,7 @@ fast-levenshtein@^2.0.6, fast-levenshtein@~2.0.6:
 
 fast-unique-numbers@^6.0.25:
   version "6.0.25"
-  resolved "https://registry.npmjs.org/fast-unique-numbers/-/fast-unique-numbers-6.0.25.tgz"
+  resolved "https://registry.yarnpkg.com/fast-unique-numbers/-/fast-unique-numbers-6.0.25.tgz#34c415e03ec3b3763cf4b1b7fae15345db45112e"
   integrity sha512-H9tmI58i2VEyreK3VhCQaSAyUN733LMzhXnOcdxVWVaQIFWtoaM9pORi7h9DUgRPx6DiyvXiSb1v8MqBcfiPhg==
   dependencies:
     "@babel/runtime" "^7.20.6"
@@ -5067,7 +5067,7 @@ imurmurhash@^0.1.4:
 
 indefinite-article@0.0.2:
   version "0.0.2"
-  resolved "https://registry.npmjs.org/indefinite-article/-/indefinite-article-0.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/indefinite-article/-/indefinite-article-0.0.2.tgz#4bc855257066cfab61ea68beba75d100d6e2506b"
   integrity sha512-Au/2XzRkvxq2J6w5uvSSbBKPZ5kzINx5F2wb0SF8xpRL8BP9Lav81TnRbfPp6p+SYjYxwaaLn4EUwI3/MmYKSw==
 
 indent-string@^4.0.0:
@@ -6392,7 +6392,7 @@ mdn-data@2.0.4:
 
 media-encoder-host-broker@^7.0.74:
   version "7.0.74"
-  resolved "https://registry.npmjs.org/media-encoder-host-broker/-/media-encoder-host-broker-7.0.74.tgz"
+  resolved "https://registry.yarnpkg.com/media-encoder-host-broker/-/media-encoder-host-broker-7.0.74.tgz#b8032a472624090d9a123de97327c778754a7215"
   integrity sha512-r1WlGo9ztAxoRNNAGO5KCbaJ2J870SdJLDkzsSRlGnhZeVAhM7SYqEiBXf5KFEp+wqQF4FOUf9Pvud1KPqN0Lw==
   dependencies:
     "@babel/runtime" "^7.20.6"
@@ -6403,7 +6403,7 @@ media-encoder-host-broker@^7.0.74:
 
 media-encoder-host-worker@^9.0.74:
   version "9.0.74"
-  resolved "https://registry.npmjs.org/media-encoder-host-worker/-/media-encoder-host-worker-9.0.74.tgz"
+  resolved "https://registry.yarnpkg.com/media-encoder-host-worker/-/media-encoder-host-worker-9.0.74.tgz#25cb58a35314c732e1a082d7315970cb59c528fe"
   integrity sha512-XQ22w1URKnmKAKupHavNCJtQbjDQRv5ChLK27FnfMntcIn1hlF2DL5b1J1I7M+kYCCtU6GD1eOtonL3m4LCSzw==
   dependencies:
     "@babel/runtime" "^7.20.6"
@@ -6413,7 +6413,7 @@ media-encoder-host-worker@^9.0.74:
 
 media-encoder-host@^8.0.76:
   version "8.0.82"
-  resolved "https://registry.npmjs.org/media-encoder-host/-/media-encoder-host-8.0.82.tgz"
+  resolved "https://registry.yarnpkg.com/media-encoder-host/-/media-encoder-host-8.0.82.tgz#681e0f52c09bd883227b96e8b4331c80ff4ad23d"
   integrity sha512-wuHc9nve+VE9DInB+W1JGFNFyv6tkPS6dGvTf2mKCJs28aX2WhpEpubq87m8MQAZoMkUsbmLPSm3d1wqsDd7Sw==
   dependencies:
     "@babel/runtime" "^7.20.6"
@@ -6543,7 +6543,7 @@ ms@2.1.3:
 
 multi-buffer-data-view@^3.0.20:
   version "3.0.24"
-  resolved "https://registry.npmjs.org/multi-buffer-data-view/-/multi-buffer-data-view-3.0.24.tgz"
+  resolved "https://registry.yarnpkg.com/multi-buffer-data-view/-/multi-buffer-data-view-3.0.24.tgz#5c9be6445812f6ececc901e6e0eb57ef02312aea"
   integrity sha512-jm7Ycplx37ExXyQmqhwl7zfQmAj81y5LLzVx0XyWea4omP9W/xJhLEHs/5b+WojGyYSRt8BHiXZVcYzu68Ma0Q==
   dependencies:
     "@babel/runtime" "^7.20.6"
@@ -7768,7 +7768,7 @@ react-jss@^10.9.2:
 
 react-media-recorder@^1.6.6:
   version "1.6.6"
-  resolved "https://registry.npmjs.org/react-media-recorder/-/react-media-recorder-1.6.6.tgz"
+  resolved "https://registry.yarnpkg.com/react-media-recorder/-/react-media-recorder-1.6.6.tgz#4067c54e3f11c56f33a7df9daa1650a7aa4305f1"
   integrity sha512-VdC4bUINMWJyqOAHw1DaZ8HZhdCyVBK85zJ4cHMo9tsrekui3wq5ZxNtBmNe6nbAFQBTNj/pRnLEsiVrCW+TNQ==
   dependencies:
     extendable-media-recorder "^6.6.5"
@@ -7894,7 +7894,7 @@ readdirp@~3.6.0:
 
 recorder-audio-worklet-processor@^4.2.18:
   version "4.2.18"
-  resolved "https://registry.npmjs.org/recorder-audio-worklet-processor/-/recorder-audio-worklet-processor-4.2.18.tgz"
+  resolved "https://registry.yarnpkg.com/recorder-audio-worklet-processor/-/recorder-audio-worklet-processor-4.2.18.tgz#74e968125cdfb3136fc795928b57a61b617f8678"
   integrity sha512-rL4WErQfKGlFL5Zk1g6G92sNEciumGEKcsObmQJ3Nqt9RXvud72LFpW+OjzmT5dafUwtT4gPnD/5YngqIQe67w==
   dependencies:
     "@babel/runtime" "^7.20.6"
@@ -7902,7 +7902,7 @@ recorder-audio-worklet-processor@^4.2.18:
 
 recorder-audio-worklet@^5.1.26:
   version "5.1.34"
-  resolved "https://registry.npmjs.org/recorder-audio-worklet/-/recorder-audio-worklet-5.1.34.tgz"
+  resolved "https://registry.yarnpkg.com/recorder-audio-worklet/-/recorder-audio-worklet-5.1.34.tgz#fddf00ffdbb9283fbf4dbff7855d7e5db17d2fc6"
   integrity sha512-7nP2Xv7e8WpJ5qFYPw+Jwv5Xwz2CT39esFnrWWBaATrtiD6/gMmu7++ZTqjeI3v7VVewPiUMUIs9y6kj1sLbfw==
   dependencies:
     "@babel/runtime" "^7.20.6"
@@ -8121,7 +8121,7 @@ run-parallel@^1.1.9:
 
 rxjs-interop@^2.0.0:
   version "2.0.0"
-  resolved "https://registry.npmjs.org/rxjs-interop/-/rxjs-interop-2.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/rxjs-interop/-/rxjs-interop-2.0.0.tgz#dca61a93789a8304f653d2e159e377cefa348ec7"
   integrity sha512-ASEq9atUw7lualXB+knvgtvwkCEvGWV2gDD/8qnASzBkzEARZck9JAyxmY8OS6Nc1pCPEgDTKNcx+YqqYfzArw==
 
 safe-buffer@5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
@@ -8463,7 +8463,7 @@ stackframe@^1.3.4:
 
 standardized-audio-context@^25.3.29, standardized-audio-context@^25.3.36:
   version "25.3.36"
-  resolved "https://registry.npmjs.org/standardized-audio-context/-/standardized-audio-context-25.3.36.tgz"
+  resolved "https://registry.yarnpkg.com/standardized-audio-context/-/standardized-audio-context-25.3.36.tgz#91e017e7a8c46295c71b3f335c2e5354e6fe62a5"
   integrity sha512-I3+jpIQP2PdGDrAx9Cf4/atC92PbJt+ejLUA/mwBx3OgyEStKC57D/wTce2K3PeJBbXJ0w//I99PZTBJrpxg/A==
   dependencies:
     "@babel/runtime" "^7.20.6"
@@ -8626,7 +8626,7 @@ stylehacks@^5.1.1:
 
 subscribable-things@^2.1.11, subscribable-things@^2.1.6:
   version "2.1.11"
-  resolved "https://registry.npmjs.org/subscribable-things/-/subscribable-things-2.1.11.tgz"
+  resolved "https://registry.yarnpkg.com/subscribable-things/-/subscribable-things-2.1.11.tgz#e12c3c8dbc974e4e65f2e28d116b7746a1720c6d"
   integrity sha512-Bxjb818jzmbUyq1Kq+yGma1xPYJnTAPksJKd7nEbth2teMgQUnah4FOMhpjfonp1k5WASd/JwzXn3OhvqYQnbQ==
   dependencies:
     "@babel/runtime" "^7.20.6"
@@ -9528,7 +9528,7 @@ workbox-window@6.5.4:
 
 worker-factory@^6.0.73:
   version "6.0.73"
-  resolved "https://registry.npmjs.org/worker-factory/-/worker-factory-6.0.73.tgz"
+  resolved "https://registry.yarnpkg.com/worker-factory/-/worker-factory-6.0.73.tgz#32f5f6769628dc565650328bdb490bfe853c9f3b"
   integrity sha512-DSUmbHD1R7sdGTPcTooSQWN9q+vZnj4Axn6s9bel9xBqilLtnnHxfm/IrwyS06FV11v7NSkSh+0Wfsv4sWHbow==
   dependencies:
     "@babel/runtime" "^7.20.6"

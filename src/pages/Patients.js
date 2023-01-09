@@ -114,10 +114,6 @@ function Patients() {
           <div className={styles.cardBody}>
             <table className={styles.patientList}>
               <thead><tr className={styles.patientListItem}>
-                <th className={styles.patientListColumn} onClick={() => { handleSortID() }} style="display:none">
-                  <label className={styles.tableLabel}>Id </label>
-                  {(sortBy === 'id') ? <img src={sortIcon} className={styles.sortIcon} alt='sortIcon' /> : <></>}
-                </th>
                 <th className={styles.patientListColumn} onClick={() => { handleSortName() }}><label className={styles.tableLabel}>Name </label> {(sortBy === 'name') ? <img src={sortIcon} className={styles.sortIcon} alt='sortIcon' /> : <></>}</th>
                 <th className={styles.patientListColumn} onClick={() => { handleSortGender() }}><label className={styles.tableLabel}>Gender </label> {(sortBy === 'gender') ? <img src={sortIcon} className={styles.sortIcon} alt='sortIcon' /> : <></>}</th>
                 <th className={styles.patientListColumn} onClick={() => { handleSortAge() }}><label className={styles.tableLabel}>Age </label> {(sortBy === 'age') ? <img src={sortIcon} className={styles.sortIcon} alt='sortIcon' /> : <></>}</th>
@@ -128,7 +124,6 @@ function Patients() {
                   return (
 
                     <tr className={styles.patientListItem} key={patient.id}>
-                      <td style="display:none"><label className={styles.listItemText} >{patient.id}</label></td>
                       <td><label className={styles.listItemText} >{patient.name}</label></td>
                       <td><label className={styles.listItemText} >{patient.gender}</label></td>
                       <td><label className={styles.listItemText} >{patient.age}</label></td>

@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss';
 import { useState } from 'react';
 import searchIcon from '../assets/search.svg';
 import {
-  useParams,useLocation, useNavigate
+  useParams, useLocation, useNavigate
 } from "react-router-dom";
 import sortIcon from '../assets/sort.svg';
 import homeIcon from '../assets/back-arrow.svg';
@@ -16,12 +16,12 @@ function Treatments() {
   const [searchParam, setSearchParam] = useState("");
   let { patientID } = useParams();
   const [idreverse, setidreverse] = useState(false);
-  const {state} = useLocation();
+  const { state } = useLocation();
   const { patient } = state; // Read values passed on state
   const [data, setdata] = useState(patient.sessions)
   const [sortBy, setsortBy] = useState("")
   const [datereverse, setdatereverse] = useState(false);
-  
+
 
   const handleSortID = () => {
     console.log(patient)
@@ -36,15 +36,16 @@ function Treatments() {
 
   const handleSortDate = () => {
     setsortBy('date')
-    const arr = data.sort((a, b) =>
-      {if(a.date>b.date)return 1
-      return 0}
+    const arr = data.sort((a, b) => {
+      if (a.date > b.date) return 1
+      return 0
+    }
     )
     if (datereverse) arr.reverse()
     setdata(arr);
     setdatereverse(!datereverse);
   }
-  
+
   const styles = useStyles();
 
   return (
@@ -62,7 +63,7 @@ function Treatments() {
               <label className={styles.titleSubLabel}> Patient: {patient.name}</label>
             </div>
             <div className={styles.itemGroup}>
-              <button className={styles.addButton} onClick={() => { navigate(`/patient/${patient.id}/treatment/${999}`,{state:{ patient:patient}})}}>
+              <button className={styles.addButton} onClick={() => { navigate(`/patient/${patient.id}/treatment/${999}`, { state: { patient: patient } }) }}>
                 <label className={styles.buttonLabel}>Add new treatment</label>
               </button>
             </div>
@@ -70,24 +71,19 @@ function Treatments() {
           <div className={styles.cardBody}>
             <table className={styles.patientList}>
               <thead><tr className={styles.patientListItem}>
-              <th className={styles.patientListColumn} onClick={() => { handleSortID() }} style="display: none">
-                  <label className={styles.tableLabel}>Id </label>
-                  {(sortBy === 'id') ? <img src={window.location.origin + '/assets/sort.svg'} className={styles.sortIcon} alt='sortIcon' /> : <></>}
-                </th>
-                <th className={styles.tableLabel2}onClick={() => { handleSortDate() }}>Date{(sortBy === 'date') ? <img src={window.location.origin + '/assets/sort.svg'} className={styles.sortIcon} alt='sortIcon' /> : <></>}</th>
-                <th style={{width:'25%', textAlign:'left'}}>Operations</th>
+                <th className={styles.tableLabel2} onClick={() => { handleSortDate() }}>Date{(sortBy === 'date') ? <img src={window.location.origin + '/assets/sort.svg'} className={styles.sortIcon} alt='sortIcon' /> : <></>}</th>
+                <th style={{ width: '25%', textAlign: 'left' }}>Operations</th>
               </tr></thead>
               <tbody>
                 {data.map((patient) => {
                   return (
 
                     <tr className={styles.patientListItem} key={patientID}>
-                      <td style="display: none"><label className={styles.listItemText} >{patient.id}</label></td>
-                      <td style={{width:'15%', textAlign:'left'}} ><label className={styles.listItemText} >{patient.date}</label></td>
-                      <td style={{width:'40%', textAlign:'left',overflow:'clip'}} ><label className={styles.listItemText} >{patient.treatments}</label></td>
+                      <td style={{ width: '15%', textAlign: 'left' }} ><label className={styles.listItemText} >{patient.date}</label></td>
+                      <td style={{ width: '40npm %', textAlign: 'left', overflow: 'clip' }} ><label className={styles.listItemText} >{patient.treatments}</label></td>
                       <td>
                         <div className={styles.listButtonContainer}>
-                          <button className={styles.listButton} onClick={() => { navigate(`/patient/${patientID}/treatment/${patient.id}`,{state:{ patient:patient}}) }}>
+                          <button className={styles.listButton} onClick={() => { navigate(`/patient/${patientID}/treatment/${patient.id}`, { state: { patient: patient } }) }}>
                             <label className={styles.buttonLabel}>Details</label>
                           </button>
                           <button className={styles.listButton2} onClick={() => { console.log(patient) }}>
@@ -125,7 +121,7 @@ const useStyles = createUseStyles({
     borderRadius: "10px",
     boxShadow: '4px 4px rgba(0, 0, 0, 0.2)',
     marginTop: '50px',
-    alignItems:'center'
+    alignItems: 'center'
   },
   header: {
     width: '88%',
@@ -175,7 +171,7 @@ const useStyles = createUseStyles({
     alignItems: 'center',
   },
   sortIcon: {
-    paddingTop:'3px',
+    paddingTop: '3px',
     width: "20px",
     height: "20px",
     "&:hover": {
@@ -323,17 +319,17 @@ const useStyles = createUseStyles({
       outlineWidth: '3px'
     },
   }
-  ,tableLabel: {
-    userSelect:'none',
+  , tableLabel: {
+    userSelect: 'none',
     "&:hover": {
       cursor: 'pointer'
     }
   },
   tableLabel2: {
-    userSelect:'none',
+    userSelect: 'none',
     "&:hover": {
       cursor: 'pointer'
-    },width:'25%', textAlign:'left'
+    }, width: '25%', textAlign: 'left'
   },
   homeButton: {
     float: 'left',
@@ -341,9 +337,9 @@ const useStyles = createUseStyles({
     height: '20px',
     margin: '5px 5px 5px 15px',
     '&:hover': {
-        cursor: 'pointer',
+      cursor: 'pointer',
     }
-},
+  },
 })
 
 export default Treatments

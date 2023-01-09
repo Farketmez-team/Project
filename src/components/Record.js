@@ -2,11 +2,6 @@ import React, { useState } from 'react'
 import { createUseStyles } from 'react-jss';
 import { useNavigate } from 'react-router-dom';
 //import patientService from '../services/PatientService';
-import pause from '../assets/pause.svg'
-import play from '../assets/play.svg'
-import record from '../assets/record.svg'
-import microphone from '../assets/microphone.svg'
-import upload from '../assets/upload.svg'
 
 
 const Record = (props) => {
@@ -14,20 +9,20 @@ const Record = (props) => {
     const styles = useStyles();
     return (
         <div className={styles.container}>
-            
+
             <div className={styles.formBody}>
-            
-                <img src={microphone} className={styles.micbutton} alt='microphone' onClick={() => props.startRecording()}>
+
+                <img src={window.location.origin + '/assets/microphone.svg'} className={styles.micbutton} alt='microphone' onClick={() => props.startRecording()}>
                 </img>
-                <img src={record} className={styles.recordbutton} alt='record' onClick={() => {props.stopRecording(); props.setRecorded(true)}}>
+                <img src={window.location.origin + '/assets/record.svg'} className={styles.recordbutton} alt='record' onClick={() => { props.stopRecording(); props.setRecorded(true) }}>
                 </img>
-                <img src={pause} className={styles.pausebutton} alt='pause' onClick={() => props.pauseRecording()}>
+                <img src={window.location.origin + '/assets/pause.svg'} className={styles.pausebutton} alt='pause' onClick={() => props.pauseRecording()}>
                 </img>
-                <img src={upload} className={styles.pausebutton} alt='upload' onClick={() => props.onUpload()}>
+                <img src={window.location.origin + '/assets/upload.svg'} className={styles.pausebutton} alt='upload' onClick={() => props.onUpload()}>
                 </img></div>
-                <div className={styles.player}>{(props.recorded)?<video src={props.media} controls height={50} width={400} type="audio/wav"/>:
-                <video src={props.media2} controls loop height={50} width={400} type="audio/wav"/>}
-                
+            <div className={styles.player}>{(props.recorded) ? <video src={props.media} controls height={50} width={400} type="audio/wav" /> :
+                <video src={props.media2} controls loop height={50} width={400} type="audio/wav" />}
+
             </div>
 
             {/* <div className={styles.formBody2}>
@@ -55,7 +50,7 @@ const Record = (props) => {
 const useStyles = createUseStyles({
     container: {
         width: '100%',
-        height: '100%', 
+        height: '100%',
         position: 'relative',
         display: 'flex',
         marginBottom: '15px',
@@ -69,8 +64,8 @@ const useStyles = createUseStyles({
         height: "20px",
     },
     playbutton: {
-        margin:'5px',
-        height:'25px',
+        margin: '5px',
+        height: '25px',
         "&:hover": {
             cursor: 'pointer',
 
@@ -78,14 +73,14 @@ const useStyles = createUseStyles({
         display: 'flex',
         flexDirection: 'column',
     },
-    player:{
-        position:'relative',
-        display:'flex',
-        marginLeft:"10px",
+    player: {
+        position: 'relative',
+        display: 'flex',
+        marginLeft: "10px",
     },
     pausebutton: {
-        margin:'6px',
-        height:'25px',
+        margin: '6px',
+        height: '25px',
         "&:hover": {
             cursor: 'pointer',
 
@@ -93,8 +88,8 @@ const useStyles = createUseStyles({
 
     },
     recordbutton: {
-        margin:'5px',
-        height:'25px',
+        margin: '5px',
+        height: '25px',
         "&:hover": {
             cursor: 'pointer',
 
@@ -102,8 +97,8 @@ const useStyles = createUseStyles({
 
     },
     micbutton: {
-        height:'25px',
-        margin:'5px',
+        height: '25px',
+        margin: '5px',
         "&:hover": {
             cursor: 'pointer',
 
@@ -123,14 +118,14 @@ const useStyles = createUseStyles({
 
         },
     },
-    
+
     formBody2: {
-        
-        backgroundColor:'#transparent',
+
+        backgroundColor: '#transparent',
         position: 'relative',
         display: 'flex',
         flexDirection: 'label',
-        
+
     },
     formGroup: {
         display: 'block',
@@ -143,12 +138,12 @@ const useStyles = createUseStyles({
         justifyContent: 'center',
         alignItems: 'center',
         width: '130px',
-        height: '40px', 
+        height: '40px',
         padding: '8px 10px',
         backgroundColor: '#CE8181',
         borderRadius: '5px',
         borderWidth: '0px',
-        boxShadow:'1px 1px rgba(0, 0, 0, 0.2)',
+        boxShadow: '1px 1px rgba(0, 0, 0, 0.2)',
         "&:hover": {
             cursor: 'pointer'
         },
@@ -163,12 +158,12 @@ const useStyles = createUseStyles({
         justifyContent: 'center',
         alignItems: 'center',
         width: '130px',
-        height: '40px', 
+        height: '40px',
         padding: '8px 10px',
         backgroundColor: '#95E39D',
         borderRadius: '5px',
         borderWidth: '0px',
-        boxShadow:'1px 1px rgba(0, 0, 0, 0.2)',
+        boxShadow: '1px 1px rgba(0, 0, 0, 0.2)',
         "&:hover": {
             cursor: 'pointer'
         },
@@ -183,12 +178,12 @@ const useStyles = createUseStyles({
         justifyContent: 'center',
         alignItems: 'center',
         width: '130px',
-        height: '40px', 
+        height: '40px',
         padding: '8px 10px',
         backgroundColor: '#8792A1',
         borderRadius: '5px',
         borderWidth: '0px',
-        boxShadow:'1px 1px rgba(0, 0, 0, 0.2)',
+        boxShadow: '1px 1px rgba(0, 0, 0, 0.2)',
         "&:hover": {
             cursor: 'pointer'
         },
@@ -202,7 +197,7 @@ const useStyles = createUseStyles({
         display: 'block',
         color: '#fff',
         fontSize: '12px',
-        fontWeight:"700",
+        fontWeight: "700",
         "&:hover": {
             cursor: 'pointer'
         }
@@ -211,7 +206,7 @@ const useStyles = createUseStyles({
         display: 'block',
         color: '#fff',
         fontSize: '12px',
-        fontWeight:"700",
+        fontWeight: "700",
         "&:hover": {
             cursor: 'pointer'
         }
@@ -220,7 +215,7 @@ const useStyles = createUseStyles({
         display: 'block',
         color: '#fff',
         fontSize: '12px',
-        fontWeight:"700",
+        fontWeight: "700",
         "&:hover": {
             cursor: 'pointer'
         }

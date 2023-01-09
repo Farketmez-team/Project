@@ -1,13 +1,11 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import { createUseStyles } from 'react-jss';
-import { useState, useRef,useEffect } from 'react';
-import faces from '../assets/faces.png';
+import { useState, useRef, useEffect } from 'react';
 import {
   useParams, useLocation, useNavigate
 } from "react-router-dom";
 
-import Notes from "../components/Notes"
 import Recordings from '../components/Recordings';
 import Record from '../components/Record';
 import Details from "../components/Details";
@@ -17,19 +15,19 @@ import treatmentService from '../services/TreatmentService';
 import Operation from '../components/Operation';
 
 const mouseStateEnum = {
-    normal : 1,
-    DISPORT : 2,
-    BOTOX : 3,
-    XEZAMIN : 4,
-    FACELIFT : 5
+  normal: 1,
+  DISPORT: 2,
+  BOTOX: 3,
+  XEZAMIN: 4,
+  FACELIFT: 5
 }
 
-const symbols = ['+',"■","○","▲"]
+const symbols = ['+', "■", "○", "▲"]
 
 const names = ['DISPORT',
   'BOTOX',
   'XEZAMIN',
-  'FACELIFT',"NONE"];
+  'FACELIFT', "NONE"];
 
 class OperationDTO {
   positionX
@@ -41,7 +39,7 @@ class OperationDTO {
 
 const Treatment = () => {
 
-  
+
   const navigate = useNavigate();
 
   const [points, setpoints] = useState([])
@@ -49,13 +47,13 @@ const Treatment = () => {
   const [treatmentLvl, setTreatmentLvl] = useState(null)
   const myRef = useRef(null);
   const [audioURL, setaudioURL] = useState();
-  const [recordings,setrecords]=useState([]);
-  const [operations,setOperations]=useState([]);
+  const [recordings, setrecords] = useState([]);
+  const [operations, setOperations] = useState([]);
   const [recorded, setrecorded] = useState(true)
   const [sessionId, setSessionId] = useState(null)
   const [midwayy, setmidwayy] = useState(null)
 
-  const { status, startRecording, stopRecording,pauseRecording, mediaBlobUrl } =
+  const { status, startRecording, stopRecording, pauseRecording, mediaBlobUrl } =
     useReactMediaRecorder({ audio: true });
 
   const handleRemove = (name) => {
@@ -65,180 +63,183 @@ const Treatment = () => {
         setpatientList(res)
         })
     })*/
-}
+  }
 
-const handleSave = async () => {
-   console.log(operations)
-   treatmentService.addTreatments(operations).then((resp)=>{
-    console.log(resp)
-   })
-}
+  const handleSave = async () => {
+    console.log(operations)
+    treatmentService.addTreatments(operations).then((resp) => {
+      console.log(resp)
+    })
+  }
 
-const onUploadVoiceNote = async () => {
-  treatmentService.uploadAudioNote({session:128,patient:36,mediaUrl:mediaBlobUrl}).then((resp)=>{
-   console.log(resp)
-  })
-}
+  const onUploadVoiceNote = async () => {
+    treatmentService.uploadAudioNote({ session: 128, patient: 36, mediaUrl: mediaBlobUrl }).then((resp) => {
+      console.log(resp)
+    })
+  }
 
-const handleCancel = async () => {
-  navigate(-1)
-}
+  const handleCancel = async () => {
+    navigate(-1)
+  }
 
 
-const handleClickOnFace = (e) => {
+  const handleClickOnFace = (e) => {
 
-  if(mouseState === mouseStateEnum.normal){
-  return;}
-  //console.log(e.nativeEvent.offsetX,e.nativeEvent.offsetY)
-  const element = myRef.current;
+    if (mouseState === mouseStateEnum.normal) {
+      return;
+    }
+    //console.log(e.nativeEvent.offsetX,e.nativeEvent.offsetY)
+    const element = myRef.current;
     const x = element.getBoundingClientRect().left;
     const y = element.getBoundingClientRect().top;
-    const midway =  Math.round((element.getBoundingClientRect().right + element.getBoundingClientRect().left)/2)
+    const midway = Math.round((element.getBoundingClientRect().right + element.getBoundingClientRect().left) / 2)
     const offsetX = e.nativeEvent.offsetX
     const offsetY = e.nativeEvent.offsetY
-    console.log(offsetX+x)
+    console.log(offsetX + x)
     setmidwayy(midway);
-    if(offsetX+x < midway)
-      if(offsetX+x<354){
-        setpoints([...points,{x:Math.round(offsetX+x+(95+((midway-(offsetX+x))*0.30))),y:offsetY+y-5,operation:mouseState, lvl:treatmentLvl},{x:offsetX+x,y:offsetY+y,operation:mouseState, lvl:treatmentLvl}])
+    if (offsetX + x < midway)
+      if (offsetX + x < 354) {
+        setpoints([...points, { x: Math.round(offsetX + x + (95 + ((midway - (offsetX + x)) * 0.30))), y: offsetY + y - 5, operation: mouseState, lvl: treatmentLvl }, { x: offsetX + x, y: offsetY + y, operation: mouseState, lvl: treatmentLvl }])
       }
       else
-      setpoints([...points,{x:Math.round(offsetX+x-(145+((midway-(offsetX+x))*0.20))),y:offsetY+y+5,operation:mouseState, lvl:treatmentLvl},{x:offsetX+x,y:offsetY+y,operation:mouseState, lvl:treatmentLvl}])
-    else{
-      if(offsetX+x>640){
-        setpoints([...points,{x:Math.round(offsetX+x-(95+(((offsetX+x)-midway)*0.30))),y:offsetY+y-5,operation:mouseState, lvl:treatmentLvl},{x:offsetX+x,y:offsetY+y,operation:mouseState, lvl:treatmentLvl}])
+        setpoints([...points, { x: Math.round(offsetX + x - (145 + ((midway - (offsetX + x)) * 0.20))), y: offsetY + y + 5, operation: mouseState, lvl: treatmentLvl }, { x: offsetX + x, y: offsetY + y, operation: mouseState, lvl: treatmentLvl }])
+    else {
+      if (offsetX + x > 640) {
+        setpoints([...points, { x: Math.round(offsetX + x - (95 + (((offsetX + x) - midway) * 0.30))), y: offsetY + y - 5, operation: mouseState, lvl: treatmentLvl }, { x: offsetX + x, y: offsetY + y, operation: mouseState, lvl: treatmentLvl }])
       }
       else
-      setpoints([...points,{x:Math.round(offsetX+x+(150+(((offsetX+x)-midway)*0.18))),y:offsetY+y+5,operation:mouseState, lvl:treatmentLvl},{x:offsetX+x,y:offsetY+y,operation:mouseState, lvl:treatmentLvl}])
+        setpoints([...points, { x: Math.round(offsetX + x + (150 + (((offsetX + x) - midway) * 0.18))), y: offsetY + y + 5, operation: mouseState, lvl: treatmentLvl }, { x: offsetX + x, y: offsetY + y, operation: mouseState, lvl: treatmentLvl }])
     }
     const op = new OperationDTO();
     op.patientId = patientID
-    op.positionX = Math.round(offsetX+x)
-    op.positionY = Math.round(offsetY+y)
-    op.type = names[mouseState-2];
+    op.positionX = Math.round(offsetX + x)
+    op.positionY = Math.round(offsetY + y)
+    op.type = names[mouseState - 2];
     op.treatmentSize = treatmentLvl;
-    setOperations([...operations,op])
-}
-const onOperationClick = (level,operation) => {
-  console.log(`Trestment level:${level}, Operation:${names[operation-1]}`)
-  setMouseState(operation)
-  setTreatmentLvl(level)
-}
+    setOperations([...operations, op])
+  }
+  const onOperationClick = (level, operation) => {
+    console.log(`Trestment level:${level}, Operation:${names[operation - 1]}`)
+    setMouseState(operation)
+    setTreatmentLvl(level)
+  }
 
-const onOperationCancel = () => {
-  setMouseState(mouseStateEnum.normal)
-  setTreatmentLvl(0)
-}
+  const onOperationCancel = () => {
+    setMouseState(mouseStateEnum.normal)
+    setTreatmentLvl(0)
+  }
 
-const onVoiceNoteSelect = (voiceNote) => {
-  console.log(voiceNote)
-  setaudioURL(voiceNote)
-  setrecorded(false)
-}
+  const onVoiceNoteSelect = (voiceNote) => {
+    console.log(voiceNote)
+    setaudioURL(voiceNote)
+    setrecorded(false)
+  }
 
-useEffect(() => {
-  const element = myRef.current;
+  useEffect(() => {
+    const element = myRef.current;
     const x = element.getBoundingClientRect().left;
     const y = element.getBoundingClientRect().top;
-    const midway =  Math.round((element.getBoundingClientRect().right + element.getBoundingClientRect().left)/2)
-  if(treatmentID==999){const op = new OperationDTO();
-  op.patientId = patientID
-  op.positionX = 0
-  op.positionY = 0
-  op.type = "NONE";
-  op.treatmentSize = 10;
-  treatmentService.addTreatments([op]).then((response)=>{
-    setSessionId(response[0].sessionId)
-    treatmentService.getAudioNotes(patientID).then((data)=>{
-      //console.log(data)
-      setrecords(data)
-    })
-  })}
-  else{
-    console.log(treatmentID,sessionId)
-    setSessionId(treatmentID)
-    treatmentService.getAudioNotes(patientID).then((data)=>{
-      //console.log(data)
-      setrecords(data)
-    })
-    treatmentService.getTreatments(treatmentID,patientID).then((data)=>{
-      data.map((treatment)=>{
-        let temp = points
-        temp.push({x:treatment.positionX,y:treatment.positionY,operation: names.indexOf(treatment.type)+2,lvl:treatment.treatmentSize})
-        console.log(treatment)
-        setpoints(temp)
-    //     if(treatment.positionX < midway){
-    //   if(treatment.positionX<354){
-    //     setpoints([...points,{x:Math.round(treatment.positionX+(95+((midway-(treatment.positionX))*0.30))),y:treatment.positionY-5+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize},{x:treatment.positionX,y:treatment.positionY+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize}])
-    //   }
-    //   else
-    //   setpoints([...points,{x:Math.round(treatment.positionX-(145+((midway-(treatment.positionX))*0.20))),y:treatment.positionY+5+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize},{x:treatment.positionX,y:treatment.positionY+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize}])
-    // }else{
-    //   if(treatment.positionX>640){
-    //     setpoints([...points,{x:Math.round(treatment.positionX-(95+(((treatment.positionX)-midway)*0.30))),y:treatment.positionY-5+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize},{x:treatment.positionX,y:treatment.positionY+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize}])
-    //   }
-    //   else
-    //   setpoints([...points,{x:Math.round(treatment.positionX+(150+(((treatment.positionX)-midway)*0.18))),y:treatment.positionY+5+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize},{x:treatment.positionX,y:treatment.positionY+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize}])
-    // }
+    const midway = Math.round((element.getBoundingClientRect().right + element.getBoundingClientRect().left) / 2)
+    if (treatmentID == 999) {
+      const op = new OperationDTO();
+      op.patientId = patientID
+      op.positionX = 0
+      op.positionY = 0
+      op.type = "NONE";
+      op.treatmentSize = 10;
+      treatmentService.addTreatments([op]).then((response) => {
+        setSessionId(response[0].sessionId)
+        treatmentService.getAudioNotes(patientID).then((data) => {
+          //console.log(data)
+          setrecords(data)
+        })
       })
-    })
-  }
-  
+    }
+    else {
+      console.log(treatmentID, sessionId)
+      setSessionId(treatmentID)
+      treatmentService.getAudioNotes(patientID).then((data) => {
+        //console.log(data)
+        setrecords(data)
+      })
+      treatmentService.getTreatments(treatmentID, patientID).then((data) => {
+        data.map((treatment) => {
+          let temp = points
+          temp.push({ x: treatment.positionX, y: treatment.positionY, operation: names.indexOf(treatment.type) + 2, lvl: treatment.treatmentSize })
+          console.log(treatment)
+          setpoints(temp)
+          //     if(treatment.positionX < midway){
+          //   if(treatment.positionX<354){
+          //     setpoints([...points,{x:Math.round(treatment.positionX+(95+((midway-(treatment.positionX))*0.30))),y:treatment.positionY-5+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize},{x:treatment.positionX,y:treatment.positionY+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize}])
+          //   }
+          //   else
+          //   setpoints([...points,{x:Math.round(treatment.positionX-(145+((midway-(treatment.positionX))*0.20))),y:treatment.positionY+5+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize},{x:treatment.positionX,y:treatment.positionY+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize}])
+          // }else{
+          //   if(treatment.positionX>640){
+          //     setpoints([...points,{x:Math.round(treatment.positionX-(95+(((treatment.positionX)-midway)*0.30))),y:treatment.positionY-5+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize},{x:treatment.positionX,y:treatment.positionY+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize}])
+          //   }
+          //   else
+          //   setpoints([...points,{x:Math.round(treatment.positionX+(150+(((treatment.positionX)-midway)*0.18))),y:treatment.positionY+5+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize},{x:treatment.positionX,y:treatment.positionY+y,operation:names.indexOf(treatment.type)+1, lvl:treatment.treatmentSize}])
+          // }
+        })
+      })
+    }
 
-  
-}, [])
+
+
+  }, [])
 
 
   const [noteText, setnoteText] = useState("");
   const styles = useStyles();
 
-  let { patientID,treatmentID } = useParams();
+  let { patientID, treatmentID } = useParams();
   //console.log( patientID,treatmentID)
 
   return (
     <>
       <Navbar />
-      <div className={styles.container} style={{cursor:(mouseState!==mouseStateEnum.normal)?'crosshair':'default'}}>
+      <div className={styles.container} style={{ cursor: (mouseState !== mouseStateEnum.normal) ? 'crosshair' : 'default' }}>
         <div className={styles.background}>
           <div className={styles.mainScreen}>
             <Operation onClick={onOperationClick} lifting={true}></Operation>
-            {points.map((point)=>{
-              return <label style={{top:point.y,left:point.x, position:'absolute',color:'#d44',fontWeight:'bold'}}>{symbols[point.operation-2]}<sub style={{color:'#d44'}}>{point.lvl}</sub></label>
+            {points.map((point) => {
+              return <label style={{ top: point.y, left: point.x, position: 'absolute', color: '#d44', fontWeight: 'bold' }}>{symbols[point.operation - 2]}<sub style={{ color: '#d44' }}>{point.lvl}</sub></label>
             })}
-            <img ref={myRef} className={styles.faces} src={faces} onClick={handleClickOnFace}></img>
-            <div style={{display:'flex',flexDirection:'column', justifyContent:'center',alignItems:'center'}}>
+            <img ref={myRef} className={styles.faces} src={window.location.origin + '/assets/faces.png'} onClick={handleClickOnFace}></img>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
               <Operation onClick={onOperationClick} lifting={false}></Operation>
-              {(mouseState!==mouseStateEnum.normal)?<button className={styles.formBtnnn} onClick={onOperationCancel}><label>Cancel</label></button>:<></>}
+              {(mouseState !== mouseStateEnum.normal) ? <button className={styles.formBtnnn} onClick={onOperationCancel}><label>Cancel</label></button> : <></>}
             </div>
           </div>
-        {/* <Notes onClick={handleSelectedNote}/> */}
-        <div className={styles.bottomLevelBody}>
-          <div className={styles.bottombody}>
-            <Recordings records={recordings} onClick={onVoiceNoteSelect}/>
-            <Details initaltext={noteText}/>
-          </div>
-          <div className={styles.recording}>
-            < Record startRecording={startRecording} stopRecording={stopRecording} pauseRecording={pauseRecording} onUpload={onUploadVoiceNote} media={mediaBlobUrl} media2={audioURL} recorded={recorded} setRecorded={setrecorded}/>
-            <div className={styles.formBody2}>
-                <div className={styles.formGroup}>
-                    <button className={styles.formBtn} onClick={() => { handleRemove() }}>
-                        <label className={styles.formBtnLabel}>Remove</label>
-                    </button>
-                </div>
-                <div className={styles.formGroup}>
-                    <button className={styles.formBtn2} onClick={() => { handleSave() }}> 
-                        <label className={styles.formBtnLabel2}>Save</label>
-                    </button>
-                </div>
-                <div className={styles.formGroup}>
-                    <button className={styles.formBtn3} onClick={() => { handleCancel() }}>
-                        <label className={styles.formBtnLabel3}>Cancel</label>
-                    </button>
-                </div>
+          {/* <Notes onClick={handleSelectedNote}/> */}
+          <div className={styles.bottomLevelBody}>
+            <div className={styles.bottombody}>
+              <Recordings records={recordings} onClick={onVoiceNoteSelect} />
+              <Details initaltext={noteText} />
             </div>
+            <div className={styles.recording}>
+              < Record startRecording={startRecording} stopRecording={stopRecording} pauseRecording={pauseRecording} onUpload={onUploadVoiceNote} media={mediaBlobUrl} media2={audioURL} recorded={recorded} setRecorded={setrecorded} />
+              <div className={styles.formBody2}>
+                <div className={styles.formGroup}>
+                  <button className={styles.formBtn} onClick={() => { handleRemove() }}>
+                    <label className={styles.formBtnLabel}>Remove</label>
+                  </button>
+                </div>
+                <div className={styles.formGroup}>
+                  <button className={styles.formBtn2} onClick={() => { handleSave() }}>
+                    <label className={styles.formBtnLabel2}>Save</label>
+                  </button>
+                </div>
+                <div className={styles.formGroup}>
+                  <button className={styles.formBtn3} onClick={() => { handleCancel() }}>
+                    <label className={styles.formBtnLabel3}>Cancel</label>
+                  </button>
+                </div>
+              </div>
             </div>
-          
-          
+
+
           </div>
         </div>
       </div>
@@ -248,14 +249,14 @@ useEffect(() => {
 }
 
 const useStyles = createUseStyles({
-  bottomLevelBody:{
-    width:'97%',
-    height:'250px',
-    marginTop:'25px',
-    marginLeft:'0%',
+  bottomLevelBody: {
+    width: '97%',
+    height: '250px',
+    marginTop: '25px',
+    marginLeft: '0%',
     backgroundColor: '#7FADEB',
-    borderRadius:'15px',
-   
+    borderRadius: '15px',
+
   },
   formBtnnn: {
     display: 'block',
@@ -267,23 +268,23 @@ const useStyles = createUseStyles({
     borderRadius: '5px',
     borderWidth: '0px',
     "&:hover": {
-        cursor: 'pointer'
+      cursor: 'pointer'
     },
     "&:active": {
-        outline: 'solid',
-        outlineColor: '#DD2222',
-        outlineWidth: '3px'
+      outline: 'solid',
+      outlineColor: '#DD2222',
+      outlineWidth: '3px'
     },
-    margin:'5px'
-},
+    margin: '5px'
+  },
   bottombody: {
     marginTop: '5px',
     width: '97%',
     height: '150px',
-    marginLeft:'1.2%',
+    marginLeft: '1.2%',
     backgroundColor: '#D9E8FC',
     display: 'flex',
-    borderRadius:'20px',
+    borderRadius: '20px',
 
   },
   container: {
@@ -296,18 +297,18 @@ const useStyles = createUseStyles({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  recording:{
-    marginTop:'10px',
-    display:'flex',
-    flexDirection:'row'
+  recording: {
+    marginTop: '10px',
+    display: 'flex',
+    flexDirection: 'row'
 
   },
-  points:{
-    position:'absolute',
-    backgroundColor:'#F00',
-    width:'5px',
-    height:'5px',
-    borderRadius:'50%'
+  points: {
+    position: 'absolute',
+    backgroundColor: '#F00',
+    width: '5px',
+    height: '5px',
+    borderRadius: '50%'
   },
   background: {
     display: 'flex',
@@ -332,110 +333,110 @@ const useStyles = createUseStyles({
     boxShadow: '4px 4px rgba(0, 0, 0, 0.2)',
     marginTop: '25px',
     alignItems: 'center',
-    justifyContent:'space-around'
-  }, 
+    justifyContent: 'space-around'
+  },
   formBody2: {
     position: 'relative',
-    display: 'inline-flex', 
-    alignItems:'center',
-    justifyContent:"end"
-},
-faces:{
-  height:'400px'
-},
-formGroup: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: "end"
+  },
+  faces: {
+    height: '400px'
+  },
+  formGroup: {
     display: 'block',
     width: '100%',
     marginBottom: '10px',
     padding: '5px'
-},
-formBtn: {
+  },
+  formBtn: {
     display: 'block',
     justifyContent: 'center',
     alignItems: 'center',
     width: '130px',
-    height: '40px', 
+    height: '40px',
     padding: '8px 10px',
     backgroundColor: '#CE8181',
     borderRadius: '5px',
     borderWidth: '0px',
-    boxShadow:'1px 1px rgba(0, 0, 0, 0.2)',
+    boxShadow: '1px 1px rgba(0, 0, 0, 0.2)',
     "&:hover": {
-        cursor: 'pointer'
+      cursor: 'pointer'
     },
     "&:active": {
-        outline: 'solid',
-        outlineColor: '#1D64C2',
-        outlineWidth: '3px'
+      outline: 'solid',
+      outlineColor: '#1D64C2',
+      outlineWidth: '3px'
     }
-},
-formBtn2: {
+  },
+  formBtn2: {
     display: 'block',
     justifyContent: 'center',
     alignItems: 'center',
     width: '130px',
-    height: '40px', 
+    height: '40px',
     padding: '8px 10px',
     backgroundColor: '#95E39D',
     borderRadius: '5px',
     borderWidth: '0px',
-    boxShadow:'1px 1px rgba(0, 0, 0, 0.2)',
+    boxShadow: '1px 1px rgba(0, 0, 0, 0.2)',
     "&:hover": {
-        cursor: 'pointer'
+      cursor: 'pointer'
     },
     "&:active": {
-        outline: 'solid',
-        outlineColor: '#1D64C2',
-        outlineWidth: '3px'
+      outline: 'solid',
+      outlineColor: '#1D64C2',
+      outlineWidth: '3px'
     }
-},
-formBtn3: {
+  },
+  formBtn3: {
     display: 'block',
     justifyContent: 'center',
     alignItems: 'center',
     width: '130px',
-    height: '40px', 
+    height: '40px',
     padding: '8px 10px',
     backgroundColor: '#8792A1',
     borderRadius: '5px',
     borderWidth: '0px',
-    boxShadow:'1px 1px rgba(0, 0, 0, 0.2)',
+    boxShadow: '1px 1px rgba(0, 0, 0, 0.2)',
     "&:hover": {
-        cursor: 'pointer'
+      cursor: 'pointer'
     },
     "&:active": {
-        outline: 'solid',
-        outlineColor: '#1D64C2',
-        outlineWidth: '3px'
+      outline: 'solid',
+      outlineColor: '#1D64C2',
+      outlineWidth: '3px'
     }
-},
-formBtnLabel: {
+  },
+  formBtnLabel: {
     display: 'block',
     color: '#fff',
     fontSize: '12px',
-    fontWeight:"700",
+    fontWeight: "700",
     "&:hover": {
-        cursor: 'pointer'
+      cursor: 'pointer'
     }
-},
-formBtnLabel2: {
+  },
+  formBtnLabel2: {
     display: 'block',
     color: '#fff',
     fontSize: '12px',
-    fontWeight:"700",
+    fontWeight: "700",
     "&:hover": {
-        cursor: 'pointer'
+      cursor: 'pointer'
     }
-},
-formBtnLabel3: {
+  },
+  formBtnLabel3: {
     display: 'block',
     color: '#fff',
     fontSize: '12px',
-    fontWeight:"700",
+    fontWeight: "700",
     "&:hover": {
-        cursor: 'pointer'
+      cursor: 'pointer'
     }
-},
+  },
 });
 
 export default Treatment;
